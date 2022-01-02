@@ -6,9 +6,9 @@ from watchlist.models import Watchlist
 class StockSerializer(serializers.ModelSerializer):
   class Meta:
     model = Stock
-    fields = '__all__'
+    fields = ('ticker', 'user', 'watchlist')
     
 class WatchlistSerializer(serializers.ModelSerializer):
   class Meta:
     model = Watchlist
-    fields = ['name', 'user']
+    fields = ('name', 'user')

@@ -1,9 +1,3 @@
-from rest_framework import status
-from rest_framework import serializers
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from rest_framework.serializers import Serializer
-
 from rest_framework import viewsets, permissions
 #Model Imports
 # from account.models import Account
@@ -17,8 +11,14 @@ from .serializer import WatchlistSerializer
 #Stock Data ViewSet
 class StockViewSet(viewsets.ModelViewSet):
   queryset = Stock.objects.all()
-  permissions_classes = [
+  permission_classes = [
     permissions.AllowAny
   ]
   serializer_class = StockSerializer
   
+class WatchlistViewSet(viewsets.ModelViewSet):
+  queryset = Watchlist.objects.all()
+  permission_classes = [
+    permissions.AllowAny
+  ]
+  serializer_class = WatchlistSerializer

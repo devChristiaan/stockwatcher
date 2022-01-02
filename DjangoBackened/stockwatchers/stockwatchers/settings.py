@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'activation.cloud.techsmith.com',
-    '127.0.0.1'
+    '127.0.0.1',
+    'localhost'
     ]
 
 
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'stock',
     'watchlist',
     'user',
+    'silk'
 ]
 
 MIDDLEWARE = [
@@ -55,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'silk.middleware.SilkyMiddleware',
 ]
 
 ROOT_URLCONF = 'stockwatchers.urls'

@@ -10,6 +10,7 @@ django-rest-knox = "*"
 mysqlclient = "*"
 
 [dev-packages]
+django-silk = "*"
 
 [requires]
 python_version = "3.10"

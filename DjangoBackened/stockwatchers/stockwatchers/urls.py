@@ -22,3 +22,5 @@ urlpatterns = [
     #Rest Framework URLS
     path('api/v1/', include('api.urls')),
 ]
+
+urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]
