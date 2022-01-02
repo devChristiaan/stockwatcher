@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-nr23xy)n3lh&4u^41=c)0avjwg4ft$n1lgft-x9h3bo$9qtr%@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'activation.cloud.techsmith.com',
+    '127.0.0.1'
+    ]
 
 
 # Application definition
@@ -41,7 +44,7 @@ INSTALLED_APPS = [
     'knox',
     'stock',
     'watchlist',
-    'user'
+    'user',
 ]
 
 MIDDLEWARE = [
