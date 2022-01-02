@@ -1,4 +1,6 @@
 from rest_framework import viewsets, permissions
+from rest_framework.response import Response
+
 #Model Imports
 # from account.models import Account
 from stock.models import Stock
@@ -15,6 +17,7 @@ class StockViewSet(viewsets.ModelViewSet):
     permissions.AllowAny
   ]
   serializer_class = StockSerializer
+  Response(serializer_class.data)
   
 class WatchlistViewSet(viewsets.ModelViewSet):
   queryset = Watchlist.objects.all()
@@ -22,3 +25,4 @@ class WatchlistViewSet(viewsets.ModelViewSet):
     permissions.AllowAny
   ]
   serializer_class = WatchlistSerializer
+  Response(serializer_class.data)

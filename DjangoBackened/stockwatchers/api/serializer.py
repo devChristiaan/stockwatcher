@@ -11,4 +11,4 @@ class StockSerializer(serializers.ModelSerializer):
 class WatchlistSerializer(serializers.ModelSerializer):
   class Meta:
     model = Watchlist
-    fields = ('name', 'user')
+    fields = ('name', 'user', 'id')
