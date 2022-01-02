@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'knox',
     'stock',
-    'watchlist'
+    'watchlist',
+    'user'
 ]
 
 MIDDLEWARE = [
