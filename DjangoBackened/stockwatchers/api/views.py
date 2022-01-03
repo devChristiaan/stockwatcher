@@ -9,6 +9,7 @@ from watchlist.models import Watchlist
 #Serializer imports
 from .serializer import StockSerializer
 from .serializer import WatchlistSerializer
+from .serializer import WatchlistStocksSerializer
 
 #Stock Data ViewSet
 class StockViewSet(viewsets.ModelViewSet):
@@ -25,4 +26,13 @@ class WatchlistViewSet(viewsets.ModelViewSet):
     permissions.AllowAny
   ]
   serializer_class = WatchlistSerializer
+  Response(serializer_class.data)
+  
+class WatchlistStocksViewSet(viewsets.ModelViewSet):
+  
+  queryset= Stock.objects.all()
+  permission_classes = [
+    permissions.AllowAny
+  ]
+  serializer_class = WatchlistStocksSerializer
   Response(serializer_class.data)
