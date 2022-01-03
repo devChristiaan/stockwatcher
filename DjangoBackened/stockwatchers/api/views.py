@@ -13,18 +13,16 @@ from .serializer import WatchlistStocksSerializer
 
 #Stock Data ViewSet
 class StockViewSet(viewsets.ModelViewSet):
+  queryset = Stock.objects.all()
   permission_classes = [
-    permissions.IsAuthenticated
+    permissions.AllowAny
   ]
-  
-  serializer_class = StockSerializer
-  Response(serializer_class.data)
   
   def get_query(self):
     return self.request.user.user_stock.all()
   
-  def perform_create(self, serializer):
-    serializer.save(owner=self.request.user)
+  serializer_class = StockSerializer
+  Response(serializer_class.data)
   
 class WatchlistViewSet(viewsets.ModelViewSet):
   queryset = Watchlist.objects.all()
