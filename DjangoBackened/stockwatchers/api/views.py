@@ -13,13 +13,13 @@ from .serializer import WatchlistStocksSerializer
 
 #Stock Data ViewSet
 class StockViewSet(viewsets.ModelViewSet):
-  queryset = Stock.objects.all()
   permission_classes = [
-    permissions.AllowAny
+    permissions.IsAuthenticated
   ]
   
   def get_query(self):
     return self.request.user.user_stock.all()
+  
   
   serializer_class = StockSerializer
   Response(serializer_class.data)

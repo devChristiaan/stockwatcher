@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'knox',
     'stock',
     'watchlist',
-    'user',
+    'accounts',
 ]
 
 REST_KNOX = {
