@@ -1,4 +1,3 @@
-from django.db.models import fields
 from rest_framework import serializers
 from stock.models import Stock
 from watchlist.models import Watchlist, WatchlistStocks
