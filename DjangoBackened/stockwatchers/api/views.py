@@ -27,7 +27,7 @@ class StockViewSet(viewsets.ModelViewSet):
 class WatchlistViewSet(viewsets.ModelViewSet):
   queryset = Watchlist.objects.all()
   permission_classes = [
-    permissions.AllowAny
+    permissions.IsAuthenticated
   ]
   serializer_class = WatchlistSerializer
   Response(serializer_class.data)
@@ -36,7 +36,7 @@ class WatchlistStocksViewSet(viewsets.ModelViewSet):
   
   queryset= Stock.objects.all()
   permission_classes = [
-    permissions.AllowAny
+    permissions.IsAuthenticated
   ]
   serializer_class = WatchlistStocksSerializer
   Response(serializer_class.data)
