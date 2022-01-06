@@ -1,10 +1,16 @@
 from rest_framework import generics, permissions
 from rest_framework.response import Response
-from knox.models import AuthToken
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.tokens import AccessToken
 
 # Register API
 class RegistrationViewSet(generics.GenericAPIView):
+  
+  permission_classes = [
+    permissions.AllowAny,
+  ]
   
   serializer_class = RegisterSerializer
   
@@ -12,21 +18,9 @@ class RegistrationViewSet(generics.GenericAPIView):
     serializer = self.get_serializer(data=request.data)
     serializer.is_valid(raise_exception=True)
     user = serializer.save()
+    tokenr = TokenObtainPairSerializer().get_token(user)  
+    tokena = AccessToken().for_user(request.user)
     return Response({
       'user': UserSerializer(user, context=self.get_serializer_context()).data,
-      'token': AuthToken.objects.create(user)[1]
+      'token': {'access': str(tokena), 'refresh': str(tokenr)}
     })
-
-# Login API
-class LoginViewSet(generics.GenericAPIView):
-  serializer_class = LoginSerializer
-  
-  def post(self, request, *args, **kwargs):
-    serializer = self.get_serializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
-    user = serializer.validated_data
-    return Response({
-      'user': UserSerializer(user, context=self.get_serializer_context()).data,
-      'token': AuthToken.objects.create(user)[1]
-    })
-# Get User API
