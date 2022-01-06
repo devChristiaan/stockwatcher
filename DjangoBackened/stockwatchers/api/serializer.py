@@ -10,7 +10,7 @@ class StockSerializer(serializers.ModelSerializer):
 class WatchlistSerializer(serializers.ModelSerializer):
   class Meta:
     model = Watchlist
-    fields = ('name', 'user', 'id')
+    fields = ('name', 'user', "id")
     
 class WatchlistStocksSerializer(serializers.ModelSerializer):
   class Meta:
