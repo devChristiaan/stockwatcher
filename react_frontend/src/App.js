@@ -4,6 +4,7 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 
@@ -13,6 +14,7 @@ import store from "./store";
 function App() {
   return (
     <Provider store={store}>
+      <CssBaseline />
       <Router>
         <NavBar />
         <Routes>
