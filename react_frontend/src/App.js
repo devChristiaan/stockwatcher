@@ -7,6 +7,9 @@ import {
 import CssBaseline from "@material-ui/core/CssBaseline";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
+import LogIn from "./pages/Login";
+import PrivateRoute from "./utils/PrivateRoute.jsx";
+import Dashboard from "./components/Dashboard";
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -19,6 +22,9 @@ function App() {
         <NavBar />
         <Routes>
           <Route element={<HomePage />} path="/" exact />
+          <Route element={<LogIn />} path="/login" exact />
+          <Route element={<Dashboard />} path="/dashboard" exact />
+          <Route element={<PrivateRoute />}></Route>
         </Routes>
       </Router>
     </Provider>

@@ -20,5 +20,6 @@ export const getWatchlists = () => async (dispatch) => {
     });
   } else {
     //Log response to find the where the error message will be
+    console.log(response);
   }
 };

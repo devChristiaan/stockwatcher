@@ -1,12 +1,9 @@
-import { Route, Redirect } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import LogIn from "../pages/Login";
 
-const PrivateRoute = ({ children, ...rest }) => {
-  const authenticated = false;
-  return (
-    <Route {...rest}>
-      {!authenticated ? <Redirect to="/login" /> : children}
-    </Route>
-  );
+const PrivateRoute = ({ ...props }) => {
+  const isAuthenticated = false;
+  return isAuthenticated() ? <Outlet /> : <LogIn />;
 };
 
 export default PrivateRoute;
