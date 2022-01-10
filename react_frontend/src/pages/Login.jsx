@@ -10,20 +10,32 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import { useState } from "react";
 import Copyright from "../components/Copyright";
+import { useSelector, useDispatch } from "react-redux";
+import allActions from "../state/actions";
 
 const theme = createTheme();
 
 export default function LogIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+  const user = useSelector((state) => state.userReducer.user);
+  const dispatch = useDispatch();
+
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
     });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(allActions.watchlistActions.login(formData));
   };
 
   return (
@@ -54,9 +66,10 @@ export default function LogIn() {
               required
               fullWidth
               id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              label="Username"
+              name="username"
+              autoComplete="username"
+              onChange={handleChange}
               autoFocus
             />
             <TextField
@@ -67,6 +80,7 @@ export default function LogIn() {
               label="Password"
               type="password"
               id="password"
+              onChange={handleChange}
               autoComplete="current-password"
             />
             <FormControlLabel

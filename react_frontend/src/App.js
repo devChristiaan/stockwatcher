@@ -11,23 +11,21 @@ import LogIn from "./pages/Login";
 import PrivateRoute from "./utils/PrivateRoute.jsx";
 import Dashboard from "./components/Dashboard";
 
-import { Provider } from "react-redux";
-import store from "./store";
-
 function App() {
   return (
-    <Provider store={store}>
+    <>
       <CssBaseline />
       <Router>
         <NavBar />
         <Routes>
           <Route element={<HomePage />} path="/" exact />
           <Route element={<LogIn />} path="/login" exact />
-          <Route element={<Dashboard />} path="/dashboard" exact />
-          <Route element={<PrivateRoute />}></Route>
+          <Route element={<PrivateRoute />}>
+            <Route element={<Dashboard />} path="/dashboard" exact />
+          </Route>
         </Routes>
       </Router>
-    </Provider>
+    </>
   );
 }
 

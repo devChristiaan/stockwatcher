@@ -1,5 +1,7 @@
+import Watchlist from "./Watchlist";
+
 const Dashboard = ({ ...props }) => {
-  return <p>Dashboard</p>;
+  return <Watchlist />;
 };
 
 export default Dashboard;
