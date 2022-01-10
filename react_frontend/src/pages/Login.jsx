@@ -38,8 +38,6 @@ export default function LogIn() {
     dispatch(allActions.userActions.login(formData));
   };
 
-  console.log(user);
-
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">

@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 const NavBar = () => {
   const classes = useStyles();
+  const user = useSelector((state) => state.userReducer.user);
 
   return (
     <div className={classes.root}>
@@ -37,9 +39,18 @@ const NavBar = () => {
           <Typography variant="h6" className={classes.title}>
             <Link to="/">Stockwatchers</Link>
           </Typography>
-          <Button color="inherit">
-            <Link to="/login">Login</Link>
-          </Button>
+          {user.user ? (
+            <>
+              <Typography>{user.user}</Typography>
+              <Button color="inherit">
+                <p>LogOut</p>
+              </Button>
+            </>
+          ) : (
+            <Button color="inherit">
+              <Link to="/login">Login</Link>
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </div>

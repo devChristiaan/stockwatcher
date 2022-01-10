@@ -10,7 +10,10 @@ const login = (formData) => (dispatch) => {
     .then((res) => {
       dispatch({
         type: "USER",
-        payload: { user: jwt_decode(res.data.access), tokens: res.data },
+        payload: {
+          user: jwt_decode(res.data.access).username,
+          tokens: res.data,
+        },
       });
     })
     .catch((err) => {
