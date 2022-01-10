@@ -14,7 +14,7 @@ from .serializer import WatchlistStocksSerializer
 #Stock Data ViewSet
 class StockViewSet(viewsets.ModelViewSet):
   permission_classes = [
-    permissions.IsAuthenticated
+    permissions.AllowAny,
   ]
   
   def get_query(self):
@@ -25,18 +25,27 @@ class StockViewSet(viewsets.ModelViewSet):
   Response(serializer_class.data)
   
 class WatchlistViewSet(viewsets.ModelViewSet):
-  queryset = Watchlist.objects.all()
   permission_classes = [
-    permissions.IsAuthenticated
+    permissions.IsAuthenticatedOrReadOnly,
   ]
+  
   serializer_class = WatchlistSerializer
+  
+  def get_queryset(self):
+      return Watchlist.objects.all()
+      # return self.request.user.owner.all()
+        
+  def perform_create(self, serializer):
+    print(self.request.user)
+    serializer.save(user=self.request.user)
+
   Response(serializer_class.data)
   
 class WatchlistStocksViewSet(viewsets.ModelViewSet):
   
-  queryset= Stock.objects.all()
   permission_classes = [
-    permissions.IsAuthenticated
+    permissions.AllowAny,
   ]
+  queryset= Stock.objects.all()
   serializer_class = WatchlistStocksSerializer
   Response(serializer_class.data)

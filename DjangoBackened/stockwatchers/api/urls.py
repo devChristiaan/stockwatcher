@@ -4,6 +4,9 @@ from rest_framework import routers
 from .views import StockViewSet, WatchlistViewSet,  WatchlistStocksViewSet
 
 router = routers.DefaultRouter()
+
+#GET METHOD
+#<siteUrl/<apiVersion>/stock
 router.register('stock', StockViewSet, basename="Stock")
 
 #GET METHOD

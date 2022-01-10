@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from .serializers import UserSerializer, RegisterSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.tokens import AccessToken
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 # Register API
 class RegistrationViewSet(generics.GenericAPIView):
@@ -23,3 +24,17 @@ class RegistrationViewSet(generics.GenericAPIView):
       'user': UserSerializer(user, context=self.get_serializer_context()).data,
       'token': {'access': str(tokena), 'refresh': str(tokenr)}
     })
+    
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['username'] = user.username
+        # ...
+
+        return token
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
