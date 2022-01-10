@@ -1,5 +1,5 @@
 import watchlistActions from "./watchlistActions";
-import userActions from "./watchlistActions";
+import userActions from "./userActions";
 
 const allActions = {
   watchlistActions,

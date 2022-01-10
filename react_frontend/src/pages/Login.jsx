@@ -35,8 +35,10 @@ export default function LogIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(allActions.watchlistActions.login(formData));
+    dispatch(allActions.userActions.login(formData));
   };
+
+  console.log(user);
 
   return (
     <ThemeProvider theme={theme}>
@@ -53,7 +55,7 @@ export default function LogIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            LogIn
           </Typography>
           <Box
             component="form"

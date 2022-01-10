@@ -1,15 +1,16 @@
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 
-const urlAPI = process.env.REACT_APP_API_URL;
+const urlLogin = process.env.REACT_APP_LOGIN_URL;
 
-// Get Watchlits
-const login = (user) => (dispatch) => {
+// Login User
+const login = (formData) => (dispatch) => {
   axios
-    .post(`${urlAPI}auth/token/`)
+    .post(urlLogin, formData)
     .then((res) => {
       dispatch({
         type: "USER",
-        payload: res.data,
+        payload: { user: jwt_decode(res.data.access), tokens: res.data },
       });
     })
     .catch((err) => {
