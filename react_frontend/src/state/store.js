@@ -3,10 +3,6 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers";
 
-const initialState = {};
-
-const middleware = [thunk];
-
 // convert user object to string and store in localStorage
 function saveToLocalStorage(state) {
   try {
@@ -30,11 +26,19 @@ function loadFromLocalStorage() {
   }
 }
 
+const initialState = {
+  userReducer: loadFromLocalStorage(),
+};
+const middleware = [thunk];
+
 const store = createStore(
   rootReducer,
-  loadFromLocalStorage(),
   initialState,
   composeWithDevTools(applyMiddleware(...middleware))
+);
+
+store.subscribe(() =>
+  saveToLocalStorage({ user: store.getState().userReducer.user })
 );
 
 export default store;

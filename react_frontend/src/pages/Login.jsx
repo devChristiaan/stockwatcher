@@ -10,7 +10,9 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Copyright from "../components/Copyright";
 import { useSelector, useDispatch } from "react-redux";
 import allActions from "../state/actions";
@@ -20,6 +22,7 @@ const theme = createTheme();
 export default function LogIn() {
   const user = useSelector((state) => state.userReducer.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     username: "",
@@ -36,6 +39,7 @@ export default function LogIn() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(allActions.userActions.login(formData));
+    navigate("/dashboard", { replace: true });
   };
 
   return (
