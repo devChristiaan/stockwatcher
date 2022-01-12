@@ -9,7 +9,7 @@ const login = (formData) => (dispatch) => {
     .post(urlLogin, formData)
     .then((res) => {
       dispatch({
-        type: "USER",
+        type: "LOGIN",
         payload: {
           user: jwt_decode(res.data.access).username,
           tokens: res.data,
@@ -21,5 +21,12 @@ const login = (formData) => (dispatch) => {
     });
 };
 
+const logout = (user) => (dispatch) => {
+  dispatch({
+    type: "LOGOUT",
+    payload: user,
+  });
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { login };
+export default { login, logout };

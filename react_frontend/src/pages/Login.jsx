@@ -39,7 +39,7 @@ export default function LogIn() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(allActions.userActions.login(formData));
-    navigate("/dashboard", { replace: true });
+    navigate("/dashboard");
   };
 
   return (

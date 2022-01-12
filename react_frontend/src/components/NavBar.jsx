@@ -6,7 +6,9 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import allActions from "../state/actions/index";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,6 +25,13 @@ const useStyles = makeStyles((theme) => ({
 const NavBar = () => {
   const classes = useStyles();
   const user = useSelector((state) => state.userReducer.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    dispatch(allActions.userActions.logout(user));
+    navigate("/", { replace: true });
+  };
 
   return (
     <div className={classes.root}>
@@ -42,8 +51,8 @@ const NavBar = () => {
           {user.user ? (
             <>
               <Typography>{user.user}</Typography>
-              <Button color="inherit">
-                <p>LogOut</p>
+              <Button color="inherit" onClick={logout}>
+                LogOut
               </Button>
             </>
           ) : (
