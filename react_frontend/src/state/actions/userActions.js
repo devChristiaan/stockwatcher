@@ -28,5 +28,23 @@ const logout = (user) => (dispatch) => {
   });
 };
 
+const refresh = (refreshToken, user) => (dispatch) => {
+  axios
+    .post(urlLogin, refreshToken)
+    .then((res) => {
+      dispatch({
+        type: "REFRESH",
+        payload: {
+          user: user,
+          tokens: res.data,
+        },
+      });
+    })
+    .catch((err) => {
+      logout(user);
+      console.log(err);
+    });
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { login, logout };
+export default { login, logout, refresh };

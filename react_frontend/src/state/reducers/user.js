@@ -13,6 +13,11 @@ export function userReducer(state = initialState, action) {
       return {
         user: [],
       };
+    case "REFRESH":
+      return {
+        ...state,
+        user: action.payload,
+      };
     default:
       return state;
   }

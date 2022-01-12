@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const PrivateRoute = ({ ...props }) => {
   const user = useSelector((state) => state.userReducer.user);
 
-  return user.access ? <Outlet /> : <LogIn />;
+  return user.tokens ? <Outlet /> : <LogIn />;
 };
 
 export default PrivateRoute;

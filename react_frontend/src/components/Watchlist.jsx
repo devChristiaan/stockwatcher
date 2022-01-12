@@ -18,10 +18,8 @@ const Watchlist = ({ ...props }) => {
 
   const dispatch = useDispatch();
 
-  const user = "boby";
-
   useEffect(() => {
-    dispatch(allActions.watchlistActions.getWatchlists(user));
+    dispatch(allActions.watchlistActions.getWatchlists());
   }, [dispatch]);
 
   return (
