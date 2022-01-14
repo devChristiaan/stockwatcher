@@ -2,6 +2,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 
 const urlLogin = process.env.REACT_APP_LOGIN_URL;
+const urlRefresh = process.env.REACT_APP_REFRESH_URL;
 
 // Login User
 const login = (formData) => (dispatch) => {
@@ -30,7 +31,7 @@ const logout = (user) => (dispatch) => {
 
 const refresh = (refreshToken, user) => (dispatch) => {
   axios
-    .post(urlLogin, refreshToken)
+    .post(urlRefresh, { refresh: refreshToken })
     .then((res) => {
       dispatch({
         type: "REFRESH",

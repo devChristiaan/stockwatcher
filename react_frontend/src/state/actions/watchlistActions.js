@@ -3,7 +3,10 @@ import axios from "axios";
 const urlAPI = process.env.REACT_APP_API_URL;
 
 // Get Watchlits
-const getWatchlists = (user) => (dispatch) => {
+const getWatchlists = (authTokens) => (dispatch) => {
+  axios.defaults.headers.common[
+    "Authorization"
+  ] = `Bearer ${authTokens.access}`;
   axios
     .get(`${urlAPI}watchlist/`)
     .then((res) => {

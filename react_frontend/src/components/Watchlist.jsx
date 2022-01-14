@@ -15,11 +15,12 @@ import allActions from "../state/actions/index";
 
 const Watchlist = ({ ...props }) => {
   const watchlists = useSelector((state) => state.watchlistReducer.watchlists);
+  const authTokens = useSelector((state) => state.userReducer.user.tokens);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(allActions.watchlistActions.getWatchlists());
+    dispatch(allActions.watchlistActions.getWatchlists(authTokens));
   }, [dispatch]);
 
   return (
