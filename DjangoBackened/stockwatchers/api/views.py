@@ -26,14 +26,16 @@ class StockViewSet(viewsets.ModelViewSet):
   
 class WatchlistViewSet(viewsets.ModelViewSet):
   permission_classes = [
-    permissions.IsAuthenticatedOrReadOnly,
+    permissions.IsAuthenticated,
   ]
   
   serializer_class = WatchlistSerializer
   
   def get_queryset(self):
-      return Watchlist.objects.all()
-      # return self.request.user.owner.all()
+      user = self.request.user
+      print(user)
+      return Watchlist.objects.filter(user=user)
+      # return Watchlist.objects.all()
         
   def perform_create(self, serializer):
     print(self.request.user)
