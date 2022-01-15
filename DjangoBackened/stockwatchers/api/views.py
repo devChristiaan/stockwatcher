@@ -33,9 +33,7 @@ class WatchlistViewSet(viewsets.ModelViewSet):
   
   def get_queryset(self):
       user = self.request.user
-      print(user)
       return Watchlist.objects.filter(user=user)
-      # return Watchlist.objects.all()
         
   def perform_create(self, serializer):
     print(self.request.user)
