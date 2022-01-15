@@ -11,6 +11,7 @@ export function userReducer(state = initialState, action) {
       };
     case "LOGOUT":
       return {
+        ...state,
         user: [],
       };
     case "REFRESH":

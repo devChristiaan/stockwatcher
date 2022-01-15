@@ -13,15 +13,19 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import allActions from "../state/actions/index";
 
-const Watchlist = ({ ...props }) => {
+const Watchlist = () => {
   const watchlists = useSelector((state) => state.watchlistReducer.watchlists);
   const authTokens = useSelector((state) => state.userReducer.user.tokens);
+  const user = useSelector((state) => state.userReducer.user.user);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // if (!authTokens) {
+    //   dispatch(allActions.userActions.logout(user));
+    // }
     dispatch(allActions.watchlistActions.getWatchlists(authTokens));
-  }, [dispatch]);
+  }, [authTokens, user, dispatch]);
 
   return (
     <Container>
@@ -35,16 +39,18 @@ const Watchlist = ({ ...props }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {watchlists
-              ? watchlists.map((watchlist) => (
-                  <TableRow key={watchlist.id}>
-                    <TableCell>{watchlist.name}</TableCell>
-                    <TableCell align="right">
-                      <Button>Delete</Button>
-                    </TableCell>
-                  </TableRow>
-                ))
-              : null}
+            {watchlists ? (
+              watchlists.map((watchlist) => (
+                <TableRow key={watchlist.id}>
+                  <TableCell>{watchlist.name}</TableCell>
+                  <TableCell align="right">
+                    <Button>Delete</Button>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <Typography>You do not have any watchlist yet</Typography>
+            )}
           </TableBody>
         </Table>
       </Card>

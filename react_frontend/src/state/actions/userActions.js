@@ -4,6 +4,13 @@ import jwt_decode from "jwt-decode";
 const urlLogin = process.env.REACT_APP_LOGIN_URL;
 const urlRefresh = process.env.REACT_APP_REFRESH_URL;
 
+const loading = (loading) => (dispatch) => {
+  dispatch({
+    type: "LOADING",
+    payload: loading,
+  });
+};
+
 // Login User
 const login = (formData) => (dispatch) => {
   axios
@@ -30,6 +37,8 @@ const logout = (user) => (dispatch) => {
 };
 
 const refresh = (refreshToken, user) => (dispatch) => {
+  console.log("Refresh Ran");
+  console.log(refreshToken);
   axios
     .post(urlRefresh, { refresh: refreshToken })
     .then((res) => {
@@ -42,10 +51,13 @@ const refresh = (refreshToken, user) => (dispatch) => {
       });
     })
     .catch((err) => {
-      logout(user);
+      dispatch({
+        type: "LOGOUT",
+        payload: [],
+      });
       console.log(err);
     });
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { login, logout, refresh };
+export default { login, logout, refresh, loading };

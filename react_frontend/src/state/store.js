@@ -29,6 +29,7 @@ function loadFromLocalStorage() {
 const initialState = {
   userReducer: loadFromLocalStorage(),
 };
+
 const middleware = [thunk];
 
 const store = createStore(

@@ -7,14 +7,14 @@ import NotFound from "./pages/NotFound";
 import PrivateRoute from "./utils/PrivateRoute.jsx";
 import Dashboard from "./components/Dashboard";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import allActions from "./state/actions";
 
 function App() {
   const dispatch = useDispatch();
 
-  const [loading, setLoading] = useState(true);
+  const loading = useSelector((state) => state.loadingReducer);
   const authTokens = useSelector((state) =>
     !state.userReducer.user.tokens
       ? false
@@ -25,16 +25,26 @@ function App() {
   );
 
   useEffect(() => {
-    let fithteenMinutes = 1000 * 60 * 15;
-
-    let interval = setInterval(() => {
+    if (loading) {
       if (authTokens) {
-        dispatch(allActions.userActions.refresh(authTokens, user));
+        dispatch(allActions.userActions.refresh(authTokens, user, loading));
+        dispatch(allActions.userActions.loading(loading));
+      } else {
+        dispatch(allActions.userActions.logout(user));
+        dispatch(allActions.userActions.loading(loading));
       }
-    }, fithteenMinutes);
+    }
 
-    return () => clearInterval(interval);
-  }, [authTokens, loading]);
+    // let fithteenMinutes = 1000 * 60 * 15;
+
+    // let interval = setInterval(() => {
+    //   if (authTokens) {
+    //     dispatch(allActions.userActions.refresh(authTokens, user));
+    //   }
+    // }, 2000);
+
+    // return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
