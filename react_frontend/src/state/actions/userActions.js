@@ -37,8 +37,6 @@ const logout = (user) => (dispatch) => {
 };
 
 const refresh = (refreshToken, user) => (dispatch) => {
-  console.log("Refresh Ran");
-  console.log(refreshToken);
   axios
     .post(urlRefresh, { refresh: refreshToken })
     .then((res) => {
