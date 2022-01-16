@@ -34,16 +34,6 @@ function App() {
         dispatch(allActions.userActions.loading(loading));
       }
     }
-
-    // let fithteenMinutes = 1000 * 60 * 15;
-
-    // let interval = setInterval(() => {
-    //   if (authTokens) {
-    //     dispatch(allActions.userActions.refresh(authTokens, user));
-    //   }
-    // }, 2000);
-
-    // return () => clearInterval(interval);
   }, []);
 
   return (

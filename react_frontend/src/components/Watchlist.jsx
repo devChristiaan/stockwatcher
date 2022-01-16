@@ -21,9 +21,9 @@ const Watchlist = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // if (!authTokens) {
-    //   dispatch(allActions.userActions.logout(user));
-    // }
+    if (!authTokens) {
+      dispatch(allActions.userActions.logout(user));
+    }
     dispatch(allActions.watchlistActions.getWatchlists(authTokens));
   }, [authTokens, user, dispatch]);
 
