@@ -51,9 +51,9 @@ const NavBar = () => {
               Stockwatchers
             </Link>
           </Typography>
-          <Search className={classes.searchBar} />
           {user.user ? (
             <>
+              <Search className={classes.searchBar} />
               <Typography>{user.user}</Typography>
               <Button color="inherit" onClick={logout}>
                 LogOut
