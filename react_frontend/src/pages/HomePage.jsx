@@ -4,6 +4,7 @@ import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import NewsCard from "../components/NewsCard";
 import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 const HomePage = () => {
   const apiKey = process.env.REACT_APP_FINNHUB_API_KEY;
@@ -12,7 +13,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getStockData = async () => {
+    const getNewsData = async () => {
       const response = await fetch(
         `https://finnhub.io/api/v1/news?category=general&token=${apiKey}`
       );
@@ -20,17 +21,19 @@ const HomePage = () => {
       setNewsData(data);
       setLoading(false);
     };
-    getStockData();
+    getNewsData();
   }, []);
 
   return (
     <Container>
-      <Typography variant="h2">Stock Watchers</Typography>
-      <Paper>
-        <Typography variant="h3" gutterBottom>
-          {newsData ? newsData[0]?.category : null}
-        </Typography>
-        <Grid container spacing={3}>
+      <Paper paddingX={3}>
+        <Grid
+          container
+          spacing={3}
+          direction="row"
+          justifyContent="center"
+          paddingX={3}
+        >
           {newsData.map((news) => {
             return (
               <NewsCard
