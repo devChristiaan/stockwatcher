@@ -37,7 +37,7 @@ const NavBar = () => {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar sx={{ justifyContent: "center" }}>
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -47,9 +47,11 @@ const NavBar = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            <Link to="/">Stockwatchers</Link>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              Stockwatchers
+            </Link>
           </Typography>
-          <Search />
+          <Search className={classes.searchBar} />
           {user.user ? (
             <>
               <Typography>{user.user}</Typography>
@@ -59,7 +61,9 @@ const NavBar = () => {
             </>
           ) : (
             <Button color="inherit">
-              <Link to="/login">Login</Link>
+              <Link to="/login" style={{ textDecoration: "none" }}>
+                Login
+              </Link>
             </Button>
           )}
         </Toolbar>

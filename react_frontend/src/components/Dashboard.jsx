@@ -1,7 +1,13 @@
 import Watchlist from "./Watchlist";
+import Stock from "./stock";
 
 const Dashboard = ({ ...props }) => {
-  return <Watchlist />;
+  return (
+    <>
+      <Stock />
+      <Watchlist />
+    </>
+  );
 };
 
 export default Dashboard;
