@@ -25,8 +25,8 @@ const HomePage = () => {
   }, []);
 
   return (
-    <Container>
-      <Paper paddingX={3}>
+    <Container sx={{ marginY: 5 }}>
+      <Paper>
         <Grid
           container
           spacing={3}
