@@ -3,6 +3,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import NewsCard from "../components/NewsCard";
+import Grid from "@mui/material/Grid";
 
 const HomePage = () => {
   const apiKey = process.env.REACT_APP_FINNHUB_API_KEY;
@@ -26,14 +27,14 @@ const HomePage = () => {
     <Container>
       <Typography variant="h2">Stock Watchers</Typography>
       <Paper>
-        <Container>
-          <Typography variant="h3" gutterBottom>
-            Current News
-          </Typography>
+        <Typography variant="h3" gutterBottom>
+          {newsData ? newsData[0]?.category : null}
+        </Typography>
+        <Grid container spacing={3}>
           {newsData.map((news) => {
             return (
               <NewsCard
-                category={news.category}
+                key={news.id}
                 datetime={news.datetime}
                 headline={news.headline}
                 image={news.image}
@@ -42,7 +43,7 @@ const HomePage = () => {
               />
             );
           })}
-        </Container>
+        </Grid>
       </Paper>
     </Container>
   );

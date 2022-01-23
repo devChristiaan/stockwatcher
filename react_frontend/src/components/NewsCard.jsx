@@ -1,28 +1,50 @@
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
+import Paper from "@mui/material/Paper";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 const NewsCard = ({ ...props }) => {
-  const { category, datetime, headline, image, source, summary } = props;
+  const { datetime, headline, image, source, summary, id } = props;
+
+  const date = new Date(datetime).toLocaleDateString("en-US");
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia component="img" height="140" image={image} alt={headline} />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {headline}
-        </Typography>
-        <Typography sx={{ fontSize: 14 }} gutterBottom component="div">
-          {source}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {summary}
-        </Typography>
-      </CardContent>
-    </Card>
+    <Grid item xs={12} sm={6} md={4} key={id}>
+      <Paper elevation={3} sx={{ maxWidth: 345 }}>
+        <Box
+          padding={2}
+          sx={{ display: "flex", justifyContent: "space-between" }}
+        >
+          <Typography
+            sx={{ fontSize: 14 }}
+            gutterBottom
+            component="time"
+            variant="subtitle2"
+          >
+            {date}
+          </Typography>
+          <Typography
+            sx={{ fontSize: 14 }}
+            gutterBottom
+            component="p"
+            variant="subtitle2"
+          >
+            {source}
+          </Typography>
+        </Box>
+        <CardMedia component="img" height="140" image={image} alt={headline} />
+        <Box padding={2}>
+          <Typography gutterBottom variant="h5" component="h2">
+            {headline}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" component={"p"}>
+            {summary}
+          </Typography>
+        </Box>
+      </Paper>
+    </Grid>
   );
 };
 
