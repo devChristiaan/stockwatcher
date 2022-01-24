@@ -24,7 +24,7 @@ export const theme = createTheme({
   },
   spacing: 8,
   typography: {
-    htmlFontSize: "62.5%",
+    htmlFontSize: 10,
   },
   components: {
     MuiTypography: {
@@ -35,7 +35,7 @@ export const theme = createTheme({
           },
           style: {
             fontSize: "4.5rem",
-            color: "F3F3F3",
+            color: "#F5F5F5",
             fontFamily: "PT Sans Caption, San Serif",
             margin: "2.7rem",
           },
@@ -46,7 +46,7 @@ export const theme = createTheme({
           },
           style: {
             fontSize: "2.8rem",
-            color: "F3F3F3",
+            color: "#F5F5F5",
             fontFamily: "PT Sans Caption, San Serif",
             padding: "2.7rem",
           },
