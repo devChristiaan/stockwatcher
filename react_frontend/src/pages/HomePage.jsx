@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
-import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import NewsCard from "../components/NewsCard";
 import Grid from "@mui/material/Grid";
-import CardMedia from "@mui/material/CardMedia";
-import Box from "@mui/material/Box";
-import bullCoverImage from "../img/bull.jpg";
+import HeroSection from "../components/HeroSection";
 
 const HomePage = () => {
   const apiKey = process.env.REACT_APP_FINNHUB_API_KEY;
@@ -28,14 +25,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Box>
-        <CardMedia
-          component="img"
-          height="680"
-          image={bullCoverImage}
-          alt="Bull cover image"
-        />
-      </Box>
+      <HeroSection />
       <Container sx={{ marginY: 5 }}>
         <Paper>
           <Grid
