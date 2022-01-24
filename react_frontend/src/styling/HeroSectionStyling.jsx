@@ -10,11 +10,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "rgba(87, 87, 87, 0.56)",
     padding: "10px",
   },
-  title: {
-    fontSize: 40,
-    color: "F3F3F3",
-    fontFamily: "PT Sans Caption, San Serif",
-  },
 }));
 
 export default useStyles;

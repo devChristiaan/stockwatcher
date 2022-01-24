@@ -1,7 +1,6 @@
 import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import bullCoverImage from "../img/bull.jpg";
 import useStyles from "../styling/HeroSectionStyling";
@@ -19,13 +18,13 @@ const HeroSection = () => {
       />
       <Stack
         direction="column"
-        justifyContent="center"
-        alignItems="flex-start"
+        justifyContent="flex-start"
+        alignItems="flex-end"
         className={styles.overlay}
         spacing={6}
       >
-        <Typography className={styles.title}>Stock Watchers</Typography>
-        <Typography className={styles.subTitle}>
+        <Typography variant="HeroTitle">Stock Watchers</Typography>
+        <Typography variant="HeroSubTitle">
           Keeping an eye on your Assets
         </Typography>
       </Stack>

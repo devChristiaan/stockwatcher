@@ -23,4 +23,35 @@ export const theme = createTheme({
     },
   },
   spacing: 8,
+  typography: {
+    htmlFontSize: "62.5%",
+  },
+  components: {
+    MuiTypography: {
+      variants: [
+        {
+          props: {
+            variant: "HeroTitle",
+          },
+          style: {
+            fontSize: "4.5rem",
+            color: "F3F3F3",
+            fontFamily: "PT Sans Caption, San Serif",
+            margin: "2.7rem",
+          },
+        },
+        {
+          props: {
+            variant: "HeroSubTitle",
+          },
+          style: {
+            fontSize: "2.8rem",
+            color: "F3F3F3",
+            fontFamily: "PT Sans Caption, San Serif",
+            padding: "2.7rem",
+          },
+        },
+      ],
+    },
+  },
 });
