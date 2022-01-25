@@ -51,6 +51,22 @@ export const theme = createTheme({
             padding: "2.7rem",
           },
         },
+        {
+          props: {
+            variant: "headline",
+          },
+          style: {
+            fontSize: "1.2rem",
+          },
+        },
+        {
+          props: {
+            variant: "cardBody",
+          },
+          style: {
+            fontSize: "1rem",
+          },
+        },
       ],
     },
   },
