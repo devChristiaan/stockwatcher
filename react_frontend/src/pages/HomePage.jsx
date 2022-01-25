@@ -1,14 +1,8 @@
 import { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
-import NewsCard from "../components/NewsCard";
 import Grid from "@mui/material/Grid";
 import HeroSection from "../components/HeroSection";
-import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
-import Stack from "@mui/material/Stack";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AppNewsCardPagination from "../components/AppNewsCardPagination";
 
 const HomePage = () => {
