@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 const Stock = () => {
-  const [stock, setStock] = useState("AAPL");
+  const ticker = useSelector((state) => state.stockReducer.ticker);
   const [stockData, setStockData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -10,18 +11,18 @@ const Stock = () => {
   useEffect(() => {
     const getStockData = async () => {
       const response = await fetch(
-        `https://finnhub.io/api/v1/quote?symbol=${stock}&token=${apiKey}`
+        `https://finnhub.io/api/v1/quote?symbol=${ticker}&token=${apiKey}`
       );
       const data = await response.json();
       setStockData(data);
       setLoading(false);
     };
     getStockData();
-  }, [stock]);
+  }, [ticker]);
 
   return (
     <div>
-      <h1>Stock : {stock}</h1>
+      <h1>Stock : {ticker}</h1>
       <p>Price {stockData.c}</p>
       <p>Precentage Change: {stockData.dp}</p>
     </div>
