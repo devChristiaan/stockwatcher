@@ -7,7 +7,7 @@ export function stockReducer(state = initialState, action) {
     case "SETTICKER":
       return {
         ...state,
-        ticker: action.payload,
+        ticker: action.payload.toUpperCase(),
       };
     default:
       return state;
