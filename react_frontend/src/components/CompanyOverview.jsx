@@ -1,0 +1,41 @@
+import { useState, useEffect } from "react";
+
+import Paper from "@mui/material/Paper";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+
+const CompanyOverview = ({ ...props }) => {
+  const { ticker, apiKey } = props;
+  const [companyData, setComapnyData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getCompanyData = async () => {
+      const response = await fetch(
+        `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=${apiKey}`
+      );
+      const data = await response.json();
+      setComapnyData(data);
+      setLoading(false);
+    };
+    getCompanyData();
+  }, [ticker]);
+
+  return (
+    <Container>
+      <Box>
+        <Typography component="h1" variant="primary">
+          {companyData.Name}
+        </Typography>
+        <Typography component="p" variant="subtitle">
+          {companyData.Description}
+        </Typography>
+      </Box>
+    </Container>
+  );
+};
+
+export default CompanyOverview;
