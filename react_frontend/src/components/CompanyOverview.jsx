@@ -34,6 +34,26 @@ const CompanyOverview = ({ ...props }) => {
           {companyData.Description}
         </Typography>
       </Box>
+      <Box sx={{ display: "flex", alignContent: "space-between" }}>
+        <Typography component="h2" variant="primary">
+          Sector Information
+        </Typography>
+        <Typography component="p" variant="subtitle">
+          Exchange: {companyData.Exchange}
+        </Typography>
+        <Typography component="p" variant="subtitle">
+          Currency: {companyData.Currency}
+        </Typography>
+        <Typography component="p" variant="subtitle">
+          Country: {companyData.Country}
+        </Typography>
+        <Typography component="p" variant="subtitle">
+          Sector: {companyData.Sector}
+        </Typography>
+        <Typography component="p" variant="subtitle">
+          Industry: {companyData.Industry}
+        </Typography>
+      </Box>
     </Container>
   );
 };

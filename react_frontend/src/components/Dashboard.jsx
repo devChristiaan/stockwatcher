@@ -28,7 +28,7 @@ const Dashboard = ({ ...props }) => {
           >
             <Divider />
             <List>
-              <Watchlist item />
+              <Watchlist/>
             </List>
           </Drawer>
         </Box>
