@@ -13,6 +13,7 @@ const Chart = ({ ...props }) => {
   const [loading, setLoading] = useState(true);
 
   const formatStockData = (stockData) => {
+    if (!stockData) return null;
     return Object.entries(stockData).map((entries) => {
       const [date, priceData] = entries;
 
@@ -27,6 +28,7 @@ const Chart = ({ ...props }) => {
   };
 
   const formatVolumeData = (stockData) => {
+    if (!stockData) return null;
     return Object.entries(stockData).map((entries) => {
       const [date, priceData] = entries;
 
@@ -46,8 +48,8 @@ const Chart = ({ ...props }) => {
       const data = await response.json();
       const formatedData = formatStockData(data["Time Series (Daily)"]);
       const formatedVolumeData = formatVolumeData(data["Time Series (Daily)"]);
-      setStockData(formatedData.reverse());
-      setVolumeData(formatedVolumeData.reverse());
+      if (formatedData) setStockData(formatedData.reverse());
+      if (formatedVolumeData) setVolumeData(formatedVolumeData.reverse());
       setLoading(false);
     };
     getStockData();
@@ -106,6 +108,10 @@ const Chart = ({ ...props }) => {
       });
 
       volumeSeries.setData(volumeData);
+
+      return () => {
+        chart.current.remove();
+      };
     }
   }, [loading, ticker]);
 
@@ -124,7 +130,7 @@ const Chart = ({ ...props }) => {
 
       return () => resizeObserver.current.disconnect();
     }
-  }, []);
+  }, [loading, ticker]);
 
   return (
     <div

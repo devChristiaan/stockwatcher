@@ -34,7 +34,7 @@ const CompanyOverview = ({ ...props }) => {
           {companyData.Description}
         </Typography>
       </Box>
-      <Box sx={{ display: "flex", alignContent: "space-between" }}>
+      <Box>
         <Typography component="h2" variant="primary">
           Sector Information
         </Typography>
