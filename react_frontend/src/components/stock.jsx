@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Chart from "./Chart";
 import CompanyOverview from "./CompanyOverview";

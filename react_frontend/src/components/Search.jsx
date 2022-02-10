@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
@@ -9,6 +10,7 @@ import allActions from "../state/actions/index";
 export default function Search() {
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setSearchValue(e.target.value);
@@ -18,6 +20,7 @@ export default function Search() {
     e.preventDefault();
     dispatch(allActions.stockActions.setTicker(searchValue));
     setSearchValue("");
+    navigate("/dashboard");
   };
 
   return (
