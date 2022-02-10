@@ -24,8 +24,6 @@ const CompanyOverview = ({ ...props }) => {
     getCompanyData();
   }, [ticker]);
 
-  console.log(companyData);
-
   return (
     <Container>
       <Box>

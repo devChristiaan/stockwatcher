@@ -1,13 +1,27 @@
+import { useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
+import { useSelector, useDispatch } from "react-redux";
+import allActions from "../state/actions/index";
 import Watchlist from "./Watchlist";
 import Stock from "./stock";
 
 const Dashboard = ({ ...props }) => {
+  const authTokens = useSelector((state) => state.userReducer.user.tokens);
+  const user = useSelector((state) => state.userReducer.user.user);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!authTokens) {
+      dispatch(allActions.userActions.logout(user));
+    }
+  }, [authTokens, user, dispatch]);
+
   return (
     <Container>
       <Grid container>
@@ -26,9 +40,8 @@ const Dashboard = ({ ...props }) => {
             variant="permanent"
             anchor="right"
           >
-            <Divider />
             <List>
-              <Watchlist/>
+              <Watchlist />
             </List>
           </Drawer>
         </Box>
