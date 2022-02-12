@@ -42,6 +42,7 @@ const Dashboard = ({ ...props }) => {
           >
             <List>
               <Watchlist />
+              <Divider />
             </List>
           </Drawer>
         </Box>

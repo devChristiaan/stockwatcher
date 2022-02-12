@@ -69,5 +69,17 @@ export const theme = createTheme({
         },
       ],
     },
+    MuiMenuItem: {
+      variants: [
+        {
+          props: {
+            variant: "watchlist",
+          },
+          style: {
+            fontSize: "1rem",
+          },
+        },
+      ],
+    },
   },
 });

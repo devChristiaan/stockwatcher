@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import { useSelector, useDispatch } from "react-redux";
 import allActions from "../state/actions/index";
 
@@ -33,7 +33,6 @@ const Watchlist = () => {
   }, [watchlists]);
 
   const handleChange = (event) => {
-    console.log(event);
     setWatchlist(event.target.value);
   };
 
@@ -42,16 +41,44 @@ const Watchlist = () => {
       <Typography>Watchlists</Typography>
       <FormControl fullWidth variant="standard">
         <Select
+          sx={{
+            fontSize: "1rem",
+          }}
           value={watchlist}
           label="Watchlist"
           onChange={(e) => handleChange(e)}
         >
           {watchlists ? (
             watchlists.map((watchlist) => (
-              <MenuItem key={watchlist.id} value={watchlist.name}>
-                {watchlist.name}
-                <DeleteIcon sx={{ fontSize: 25 }} />
-              </MenuItem>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <MenuItem
+                  variant="watchlist"
+                  key={watchlist.id}
+                  value={watchlist.name}
+                >
+                  {watchlist.name}
+                  <Box
+                    sx={{
+                      paddingLeft: "15px",
+                      marginLeft: "20px",
+                    }}
+                  >
+                    <EditIcon
+                      sx={{
+                        fontSize: "1.3rem",
+                        marginRight: "5px",
+                      }}
+                    />
+                    <DeleteIcon sx={{ fontSize: "1.3rem" }} />
+                  </Box>
+                </MenuItem>
+              </div>
             ))
           ) : (
             <Typography>You do not have any watchlist yet</Typography>
