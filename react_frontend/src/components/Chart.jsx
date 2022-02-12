@@ -61,41 +61,41 @@ const Chart = ({ ...props }) => {
         width: chartContainerRef.current.clientWidth,
         height: chartContainerRef.current.clientHeight,
         layout: {
-          backgroundColor: "#253248",
-          textColor: "rgba(255, 255, 255, 0.9)",
+          backgroundColor: "#FFFFFF",
+          textColor: "#202020",
         },
         grid: {
           vertLines: {
-            color: "#334158",
+            color: "rgba(0, 0, 0, 0.1)",
           },
           horzLines: {
-            color: "#334158",
+            color: "rgba(0, 0, 0, 0.1)",
           },
         },
         crosshair: {
           mode: CrosshairMode.Normal,
         },
         priceScale: {
-          borderColor: "#485c7b",
+          borderColor: "#202020",
         },
         timeScale: {
-          borderColor: "#485c7b",
+          borderColor: "#202020",
         },
       });
 
       const candleSeries = chart.current.addCandlestickSeries({
-        upColor: "#4bffb5",
-        downColor: "#ff4976",
-        borderDownColor: "#ff4976",
-        borderUpColor: "#4bffb5",
-        wickDownColor: "#838ca1",
-        wickUpColor: "#838ca1",
+        upColor: "#26A69A",
+        downColor: "#EF5350",
+        borderDownColor: "#EF5350",
+        borderUpColor: "#26A69A",
+        wickDownColor: "#EF5350",
+        wickUpColor: "#26A69A",
       });
 
       candleSeries.setData(stockData);
 
       const volumeSeries = chart.current.addHistogramSeries({
-        color: "#182233",
+        color: "#e4e4e4",
         lineWidth: 2,
         priceFormat: {
           type: "volume",
@@ -135,8 +135,13 @@ const Chart = ({ ...props }) => {
   return (
     <div
       ref={chartContainerRef}
-      style={{ height: "400px", width: "650px" }}
-    ></div>
+      style={{ padding: "1px", border: ".5px solid #202020" }}
+    >
+      <div
+        ref={chartContainerRef}
+        style={{ height: "400px", width: "650px" }}
+      ></div>
+    </div>
   );
 };
 

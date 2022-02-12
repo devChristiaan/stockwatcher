@@ -25,7 +25,7 @@ const CompanyOverview = ({ ...props }) => {
   }, [ticker]);
 
   return (
-    <Container>
+    <Container maxWidth="false" sx={{ width: "25rem", padding: "0" }}>
       <Box>
         <Typography component="h1" variant="primary">
           {companyData.Name}

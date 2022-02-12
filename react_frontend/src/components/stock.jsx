@@ -3,6 +3,8 @@ import Chart from "./Chart";
 import CompanyOverview from "./CompanyOverview";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
 
 const Stock = () => {
   const ticker = useSelector((state) => state.stockReducer.ticker);
@@ -10,18 +12,21 @@ const Stock = () => {
 
   return (
     <Grid
+      sx={{
+        display: "flex",
+        direction: "row",
+        justifyContent: "space-between",
+      }}
       container
-      spacing={3}
-      direction="column"
-      justifyContent="center"
-      paddingX={3}
       paddingY={3}
     >
-      <Typography component="h1" variant="primary">
-        Stock : {ticker}
-      </Typography>
-      <Chart item ticker={ticker} apiKey={apiKey} />
+      <Box sx={{ width: "85%", marginBottom: "1rem" }}>
+        <Typography component="h1" variant="primary">
+          {ticker}
+        </Typography>
+      </Box>
       <CompanyOverview item ticker={ticker} apiKey={apiKey} />
+      <Chart item ticker={ticker} apiKey={apiKey} />
     </Grid>
   );
 };
