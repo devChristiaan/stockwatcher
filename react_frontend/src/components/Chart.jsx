@@ -133,10 +133,7 @@ const Chart = ({ ...props }) => {
   }, [loading, ticker]);
 
   return (
-    <div
-      ref={chartContainerRef}
-      style={{ padding: "1px", border: ".5px solid #202020" }}
-    >
+    <div style={{ padding: "1px", border: ".5px solid #202020" }}>
       <div
         ref={chartContainerRef}
         style={{ height: "400px", width: "650px" }}

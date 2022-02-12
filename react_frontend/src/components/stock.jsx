@@ -20,7 +20,7 @@ const Stock = () => {
       container
       paddingY={3}
     >
-      <Box sx={{ width: "85%", marginBottom: "1rem" }}>
+      <Box sx={{ width: "100%", marginBottom: "1rem" }}>
         <Typography component="h1" variant="primary">
           {ticker}
         </Typography>

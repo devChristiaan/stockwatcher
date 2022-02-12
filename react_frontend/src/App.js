@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import CssBaseline from "@mui/material/CssBaseline";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import LogIn from "./pages/Login";
