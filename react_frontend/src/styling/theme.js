@@ -23,9 +23,6 @@ export const theme = createTheme({
     },
   },
   spacing: 8,
-  typography: {
-    htmlFontSize: 10,
-  },
   components: {
     MuiTypography: {
       variants: [

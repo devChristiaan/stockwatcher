@@ -24,29 +24,27 @@ const Dashboard = ({ ...props }) => {
 
   return (
     <Container>
-      <Grid container>
-        <Stock item />
-        <Box sx={{ overflow: "auto" }}>
-          <Drawer
-            sx={{
+      <Stock />
+      <Box sx={{ overflow: "auto" }}>
+        <Drawer
+          sx={{
+            width: 240,
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              marginTop: 8.3,
               width: 240,
-              flexShrink: 0,
-              "& .MuiDrawer-paper": {
-                marginTop: 8.3,
-                width: 240,
-                boxSizing: "border-box",
-              },
-            }}
-            variant="permanent"
-            anchor="right"
-          >
-            <List>
-              <Watchlist />
-              <Divider />
-            </List>
-          </Drawer>
-        </Box>
-      </Grid>
+              boxSizing: "border-box",
+            },
+          }}
+          variant="permanent"
+          anchor="right"
+        >
+          <List>
+            <Watchlist />
+            <Divider />
+          </List>
+        </Drawer>
+      </Box>
     </Container>
   );
 };
