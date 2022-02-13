@@ -36,7 +36,7 @@ const NavBar = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar sx={{ justifyContent: "center" }}>
           <Typography variant="h6" className={classes.title}>
             <Link to="/" style={{ textDecoration: "none" }}>
