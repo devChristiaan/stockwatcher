@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import allActions from "../state/actions/index";
 import WatchlistActions from "./WatchlistActions";
 import WatchlistDisplay from "./WatchlistDisplay";
+import WatchlistControls from "./WatchlistControls";
 
 const Watchlist = () => {
   const watchlists = useSelector((state) => state.watchlistReducer.watchlists);
@@ -32,11 +35,49 @@ const Watchlist = () => {
     setWatchlist(event.target.value);
   };
 
-  if (!editWatchlist) {
-    return <WatchlistDisplay />;
-  } else {
-    return <WatchlistActions />;
-  }
+  const editSelectedWatchlist = () => {
+    setEditWatchlist(true);
+  };
+
+  const deleteSelectedWatchlist = () => {
+    setEditWatchlist(true);
+    setEditWatchlist(false);
+  };
+
+  const addWatchlist = () => {
+    setEditWatchlist(true);
+    setEditWatchlist(false);
+  };
+
+  return (
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: ".5rem",
+        }}
+      >
+        <Typography>Watchlists</Typography>
+        {editWatchlist ? (
+          <WatchlistActions />
+        ) : (
+          <WatchlistControls
+            edit={editSelectedWatchlist}
+            remove={deleteSelectedWatchlist}
+            add={addWatchlist}
+          />
+        )}
+      </Box>
+      {!editWatchlist ? (
+        <WatchlistDisplay
+          handleChange={handleChange}
+          watchlist={watchlist}
+          watchlists={watchlists}
+        />
+      ) : null}
+    </>
+  );
 };
 
 export default Watchlist;

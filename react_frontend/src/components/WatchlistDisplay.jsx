@@ -7,49 +7,28 @@ import Select from "@mui/material/Select";
 import Typography from "@mui/material/Typography";
 
 const WatchlistDisplay = ({ ...props }) => {
+  const { handleChange, watchlists, watchlist } = props;
+
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <Typography>Watchlists</Typography>
-      <FormControl fullWidth variant="standard">
+    <Box sx={{ minWidth: 120, padding: ".5rem" }}>
+      <FormControl fullWidth variant="outlined">
         <Select
           sx={{
             fontSize: "1rem",
+            textAlign: "center",
           }}
           value={watchlist}
-          label="Watchlist"
           onChange={(e) => handleChange(e)}
         >
           {watchlists ? (
             watchlists.map((watchlist) => (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
+              <MenuItem
+                variant="watchlist"
+                key={watchlist.id}
+                value={watchlist.name}
               >
-                <MenuItem
-                  variant="watchlist"
-                  key={watchlist.id}
-                  value={watchlist.name}
-                >
-                  {watchlist.name}
-                  <Box
-                    sx={{
-                      paddingLeft: "15px",
-                      marginLeft: "20px",
-                    }}
-                  >
-                    <EditIcon
-                      sx={{
-                        fontSize: "1.3rem",
-                        marginRight: "5px",
-                      }}
-                    />
-                    <DeleteIcon sx={{ fontSize: "1.3rem" }} />
-                  </Box>
-                </MenuItem>
-              </div>
+                {watchlist.name}
+              </MenuItem>
             ))
           ) : (
             <Typography>You do not have any watchlist yet</Typography>
