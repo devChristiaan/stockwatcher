@@ -10,7 +10,14 @@ const WatchlistDisplay = ({ ...props }) => {
   const { handleChange, watchlists, watchlist } = props;
 
   return (
-    <Box sx={{ minWidth: 120, padding: ".5rem" }}>
+    <Box
+      sx={{
+        minWidth: 120,
+        padding: ".5rem",
+        display: "flex",
+        justifyContent: "space-around",
+      }}
+    >
       <FormControl fullWidth variant="outlined">
         <Select
           sx={{

@@ -5,9 +5,15 @@ import Typography from "@mui/material/Typography";
 
 const WatchlistActions = ({ ...props }) => {
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Box
+      sx={{ minWidth: 120, display: "flex", justifyContent: "space-around" }}
+    >
       <FormControl>
-        <TextField id="standard-basic" variant="standard" />
+        <TextField
+          id="standard-basic"
+          placeholder="New Watchlist"
+          variant="standard"
+        />
       </FormControl>
     </Box>
   );

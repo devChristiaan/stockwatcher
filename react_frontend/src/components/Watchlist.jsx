@@ -16,6 +16,7 @@ const Watchlist = () => {
 
   const [watchlist, setWatchlist] = useState("");
   const [editWatchlist, setEditWatchlist] = useState(false);
+  const [newWatchlist, setNewWatchlist] = useState("");
 
   useEffect(() => {
     if (!authTokens) {
@@ -59,16 +60,16 @@ const Watchlist = () => {
         }}
       >
         <Typography>Watchlists</Typography>
-        {editWatchlist ? (
-          <WatchlistActions />
-        ) : (
-          <WatchlistControls
-            edit={editSelectedWatchlist}
-            remove={deleteSelectedWatchlist}
-            add={addWatchlist}
-          />
-        )}
+        <WatchlistControls
+          edit={editSelectedWatchlist}
+          remove={deleteSelectedWatchlist}
+          add={addWatchlist}
+          editMode={editWatchlist}
+          setEdit={setEditWatchlist}
+          clearInput={setNewWatchlist}
+        />
       </Box>
+      {editWatchlist ? <WatchlistActions value={newWatchlist} /> : null}
       {!editWatchlist ? (
         <WatchlistDisplay
           handleChange={handleChange}
