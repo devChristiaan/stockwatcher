@@ -15,7 +15,7 @@ const Watchlist = () => {
   const dispatch = useDispatch();
 
   const [watchlist, setWatchlist] = useState("");
-  const [editWatchlist, setEditWatchlist] = useState(false);
+  const [actionWatchlist, setActionWatchlist] = useState(false);
   const [newWatchlist, setNewWatchlist] = useState("");
 
   useEffect(() => {
@@ -36,18 +36,8 @@ const Watchlist = () => {
     setWatchlist(event.target.value);
   };
 
-  const editSelectedWatchlist = () => {
-    setEditWatchlist(true);
-  };
-
-  const deleteSelectedWatchlist = () => {
-    setEditWatchlist(true);
-    setEditWatchlist(false);
-  };
-
-  const addWatchlist = () => {
-    setEditWatchlist(true);
-    setEditWatchlist(false);
+  const clearInput = () => {
+    setNewWatchlist("");
   };
 
   return (
@@ -61,16 +51,19 @@ const Watchlist = () => {
       >
         <Typography>Watchlists</Typography>
         <WatchlistControls
-          edit={editSelectedWatchlist}
-          remove={deleteSelectedWatchlist}
-          add={addWatchlist}
-          editMode={editWatchlist}
-          setEdit={setEditWatchlist}
-          clearInput={setNewWatchlist}
+          user={user}
+          watchlists={watchlists}
+          selectedWatchlist={watchlist}
+          clearInput={clearInput}
+          editMode={actionWatchlist}
+          setEdit={setActionWatchlist}
+          newWatchlist={newWatchlist}
         />
       </Box>
-      {editWatchlist ? <WatchlistActions value={newWatchlist} /> : null}
-      {!editWatchlist ? (
+      {actionWatchlist ? (
+        <WatchlistActions value={newWatchlist} setValue={setNewWatchlist} />
+      ) : null}
+      {!actionWatchlist ? (
         <WatchlistDisplay
           handleChange={handleChange}
           watchlist={watchlist}

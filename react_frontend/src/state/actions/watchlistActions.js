@@ -17,5 +17,59 @@ const getWatchlists = (authTokens) => (dispatch) => {
     });
 };
 
+// Add Watchlit
+const addWatchlist = (user, newWatchlist) => (dispatch) => {
+  axiosInstance
+    .post(`${urlAPI}watchlist/`, {
+      user: user,
+      name: newWatchlist,
+    })
+    .then((res) => {
+      console.log(res.data);
+      dispatch({
+        type: "ADD_WATCHLIST",
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+// Delete Watchlit
+const deleteWatchlist = (id) => (dispatch) => {
+  axiosInstance
+    .delete(`${urlAPI}watchlist/${id}/`)
+    .then((res) => {
+      dispatch({
+        type: "DELETE_WATCHLIST",
+        payload: id,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+// Edit Watchlit
+const editWatchlist = (authTokens, id) => (dispatch) => {
+  axiosInstance
+    .put(`${urlAPI}watchlist/${id}/`)
+    .then((res) => {
+      dispatch({
+        type: "EDIT_WATCHLISTS",
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getWatchlists };
+export default {
+  getWatchlists,
+  addWatchlist,
+  deleteWatchlist,
+  editWatchlist,
+};
