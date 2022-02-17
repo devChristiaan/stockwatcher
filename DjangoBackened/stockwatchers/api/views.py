@@ -1,5 +1,6 @@
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
+from rest_framework import status
 
 #Model Imports
 # from account.models import Account
@@ -36,10 +37,22 @@ class WatchlistViewSet(viewsets.ModelViewSet):
       return Watchlist.objects.filter(user=user)
         
   def perform_create(self, serializer):
-    print(self.request.user)
-    serializer.save(user=self.request.user)
-
-  Response(serializer_class.data)
+    watchlist = serializer.save(user=self.request.user)
+    return watchlist
+  
+  def destroy(self, request, *args, **kwargs):
+    watchlist = self.get_object()
+    watchlist.delete()
+    return Response({"message": "Watchlist deleted"})
+  
+  def update(self, request, *args, **kwargs):
+    watchlist = Watchlist.objects.get()
+    data = request.data
+    watchlist.name = data["name"]
+    watchlist.user = data["user"]
+    watchlist.save()
+    serializer = WatchlistSerializer(watchlist)
+    return Response(serializer.data)
   
 class WatchlistStocksViewSet(viewsets.ModelViewSet):
   
