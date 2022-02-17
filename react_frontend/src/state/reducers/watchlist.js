@@ -12,7 +12,7 @@ export function watchlistReducer(state = initialState, action) {
     case "ADD_WATCHLIST":
       return {
         ...state,
-        watchlists: action.payload,
+        watchlists: [...state.watchlists, action.payload],
       };
     case "DELETE_WATCHLIST":
       return {

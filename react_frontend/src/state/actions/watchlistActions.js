@@ -25,7 +25,6 @@ const addWatchlist = (user, newWatchlist) => (dispatch) => {
       name: newWatchlist,
     })
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: "ADD_WATCHLIST",
         payload: res.data,
