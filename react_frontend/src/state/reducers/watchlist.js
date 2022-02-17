@@ -17,7 +17,7 @@ export function watchlistReducer(state = initialState, action) {
     case "DELETE_WATCHLIST":
       return {
         ...state,
-        watchlists: state.watchlists.fliter(
+        watchlists: state.watchlists.filter(
           (watchlist) => watchlist.id !== action.payload
         ),
       };
