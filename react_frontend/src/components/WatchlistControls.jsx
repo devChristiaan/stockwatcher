@@ -17,6 +17,7 @@ const WatchlistControls = ({ ...props }) => {
     newWatchlist,
     watchlists,
     selectedWatchlist,
+    newWatchlistName,
     user,
   } = props;
 
@@ -42,9 +43,6 @@ const WatchlistControls = ({ ...props }) => {
   const edit = () => {
     setRename(true);
     setEdit(true);
-    setEditWatchlist(
-      watchlists.find((watchlist) => watchlist.name === selectedWatchlist)
-    );
   };
 
   const remove = () => {
@@ -57,7 +55,15 @@ const WatchlistControls = ({ ...props }) => {
       dispatch(allActions.watchlistActions.addWatchlist(user, newWatchlist));
       setEdit(false);
     } else {
+      dispatch(
+        allActions.watchlistActions.editWatchlist(
+          editWatchlist.id,
+          user,
+          newWatchlistName
+        )
+      );
       setRename(false);
+      setEdit(false);
     }
   };
   return (

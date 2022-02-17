@@ -51,9 +51,12 @@ const deleteWatchlist = (id) => (dispatch) => {
 };
 
 // Edit Watchlit
-const editWatchlist = (authTokens, id) => (dispatch) => {
+const editWatchlist = (id, user, newWatchlistName) => (dispatch) => {
   axiosInstance
-    .put(`${urlAPI}watchlist/${id}/`)
+    .put(`${urlAPI}watchlist/${id}/`, {
+      user: user,
+      name: newWatchlistName,
+    })
     .then((res) => {
       dispatch({
         type: "EDIT_WATCHLISTS",
