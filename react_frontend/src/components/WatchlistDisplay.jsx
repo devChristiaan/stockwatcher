@@ -5,7 +5,7 @@ import Select from "@mui/material/Select";
 import Typography from "@mui/material/Typography";
 
 const WatchlistDisplay = ({ ...props }) => {
-  const { handleChange, watchlists, watchlist } = props;
+  const { handleChange, watchlists, selectedWatchlist } = props;
 
   return (
     <Box
@@ -22,7 +22,7 @@ const WatchlistDisplay = ({ ...props }) => {
             fontSize: "1rem",
             textAlign: "center",
           }}
-          value={watchlist}
+          value={selectedWatchlist}
           onChange={(e) => handleChange(e)}
         >
           {watchlists ? (

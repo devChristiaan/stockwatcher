@@ -14,7 +14,7 @@ const Watchlist = () => {
 
   const dispatch = useDispatch();
 
-  const [watchlist, setWatchlist] = useState("");
+  const [selectedWatchlist, setSelectedWatchlist] = useState("");
   const [actionWatchlist, setActionWatchlist] = useState(false);
   const [newWatchlist, setNewWatchlist] = useState("");
 
@@ -23,17 +23,17 @@ const Watchlist = () => {
       dispatch(allActions.userActions.logout(user));
     }
     dispatch(allActions.watchlistActions.getWatchlists(authTokens));
-    setWatchlist(watchlists[0]?.name);
+    setSelectedWatchlist(watchlists[0]?.name);
   }, [authTokens, user, dispatch]);
 
   useEffect(() => {
     if (watchlists.length >= 1) {
-      setWatchlist(watchlists[0]?.name);
+      setSelectedWatchlist(watchlists[0]?.name);
     }
   }, [watchlists]);
 
   const handleChange = (event) => {
-    setWatchlist(event.target.value);
+    setSelectedWatchlist(event.target.value);
   };
 
   const clearInput = () => {
@@ -53,7 +53,7 @@ const Watchlist = () => {
         <WatchlistControls
           user={user}
           watchlists={watchlists}
-          selectedWatchlist={watchlist}
+          selectedWatchlist={selectedWatchlist}
           clearInput={clearInput}
           editMode={actionWatchlist}
           setEdit={setActionWatchlist}
@@ -66,7 +66,7 @@ const Watchlist = () => {
       {!actionWatchlist ? (
         <WatchlistDisplay
           handleChange={handleChange}
-          watchlist={watchlist}
+          selectedWatchlist={selectedWatchlist}
           watchlists={watchlists}
         />
       ) : null}

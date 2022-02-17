@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -22,8 +22,13 @@ const WatchlistControls = ({ ...props }) => {
 
   const [rename, setRename] = useState(false);
   const [editWatchlist, setEditWatchlist] = useState({});
-
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setEditWatchlist(
+      watchlists.find((watchlist) => watchlist.name === selectedWatchlist)
+    );
+  }, [selectedWatchlist, watchlists]);
 
   const clear = () => {
     clearInput();
@@ -43,9 +48,6 @@ const WatchlistControls = ({ ...props }) => {
   };
 
   const remove = () => {
-    setEditWatchlist(
-      watchlists.find((watchlist) => watchlist.name === selectedWatchlist)
-    );
     dispatch(allActions.watchlistActions.deleteWatchlist(editWatchlist.id));
     setEdit(false);
   };
