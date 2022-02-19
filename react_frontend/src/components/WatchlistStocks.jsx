@@ -13,8 +13,6 @@ const WatchlistStocks = ({ ...props }) => {
   );
   const dispatch = useDispatch();
 
-  console.log(selectedWatchlist);
-
   useEffect(() => {
     if (selectedWatchlist) {
       dispatch(

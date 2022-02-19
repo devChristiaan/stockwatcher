@@ -15,7 +15,7 @@ const WatchlistStockDisplay = ({ ...props }) => {
         justifyContent: "space-around",
       }}
     >
-      {watchlistStocks ? (
+      {watchlistStocks.length > 0 ? (
         watchlistStocks.map((stock) => (
           <ListItemButton key={stock.id}>
             <ListItemText primary={stock.ticker} />
