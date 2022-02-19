@@ -4,7 +4,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
+import Box from "@mui/material/Box";
 import MenuIcon from "@mui/material/Menu";
 import Search from "./Search";
 import { useSelector, useDispatch } from "react-redux";
@@ -37,11 +37,9 @@ const NavBar = () => {
   return (
     <div className={classes.root}>
       <AppBar position="fixed">
-        <Toolbar sx={{ justifyContent: "center" }}>
+        <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <Link to="/" style={{ textDecoration: "none" }}>
-              Stockwatchers
-            </Link>
+            <Link to="/">Stockwatchers</Link>
           </Typography>
           {user.user ? (
             <>
@@ -53,9 +51,7 @@ const NavBar = () => {
             </>
           ) : (
             <Button color="inherit">
-              <Link to="/login" style={{ textDecoration: "none" }}>
-                Login
-              </Link>
+              <Link to="/login">Login</Link>
             </Button>
           )}
         </Toolbar>
