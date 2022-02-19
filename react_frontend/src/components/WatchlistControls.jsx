@@ -6,7 +6,7 @@ import AddIcon from "@mui/icons-material/Add";
 import DoneIcon from "@mui/icons-material/Done";
 import ClearIcon from "@mui/icons-material/Clear";
 import allActions from "../state/actions/index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const WatchlistControls = ({ ...props }) => {
   const {
@@ -20,14 +20,10 @@ const WatchlistControls = ({ ...props }) => {
   } = props;
 
   const rename = useRef();
-  const [editWatchlist, setEditWatchlist] = useState({});
+  const editWatchlist = useSelector(
+    (state) => state.watchlistReducer.selectedWatchlist
+  );
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   setEditWatchlist(
-  //     watchlists.find((watchlist) => watchlist.name === selectedWatchlist)
-  //   );
-  // }, [selectedWatchlist, watchlists]);
 
   const clear = () => {
     clearInput();

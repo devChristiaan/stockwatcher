@@ -41,11 +41,12 @@ const Watchlist = () => {
   };
 
   useEffect(() => {
-    setSelectedWatchlist(
-      watchlists.find((watchlist) => watchlist.name === selectedWatchlist)
+    dispatch(
+      allActions.watchlistActions.selectedWatchlist(
+        watchlists.find((watchlist) => watchlist.name === selectedWatchlist)
+      )
     );
-    return () => {};
-  }, [selectedWatchlist, watchlists]);
+  }, [selectedWatchlist]);
 
   return (
     <>
