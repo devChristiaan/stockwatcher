@@ -5,7 +5,7 @@ const urlAPI = process.env.REACT_APP_API_URL;
 // Get Watchlits
 const getWatchlistStocks = (watchlist) => (dispatch) => {
   axiosInstance
-    .get(`${urlAPI}stock/?id=${watchlist}`)
+    .get(`${urlAPI}watchliststocks/${watchlist}`)
     .then((res) => {
       dispatch({
         type: "GET_WATCHLIST_STOCKS",
