@@ -9,6 +9,11 @@ export function watchlistStocksReducer(state = initialState, action) {
         ...state,
         watchlistStocks: action.payload,
       };
+    case "ADD_WATCHLIST_STOCKS":
+      return {
+        ...state,
+        watchlistStocks: [...state, action.payload],
+      };
     default:
       return state;
   }

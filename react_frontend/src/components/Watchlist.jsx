@@ -57,7 +57,9 @@ const Watchlist = () => {
           padding: ".5rem",
         }}
       >
-        <Typography>Watchlists</Typography>
+        <Typography sx={{ marginTop: "5px", marginLeft: "4px" }}>
+          Watchlists
+        </Typography>
         <WatchlistControls
           user={user}
           selectedWatchlist={selectedWatchlist}

@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import allActions from "../state/actions/index";
 import Watchlist from "./Watchlist";
 import WatchlistStocks from "./WatchlistStocks";
+import WatchlistStocksControls from "./WatchlistStocksControls";
 import Stock from "./stock";
 
 const Dashboard = ({ ...props }) => {
@@ -45,6 +46,7 @@ const Dashboard = ({ ...props }) => {
             <Divider />
             <WatchlistStocks />
             <Divider />
+            <WatchlistStocksControls />
           </List>
         </Drawer>
       </Box>
