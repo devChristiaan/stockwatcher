@@ -7,22 +7,30 @@ from rest_framework import status
 from stock.models import Stock
 from watchlist.models import Watchlist
 
+
 #Serializer imports
 from .serializer import StockSerializer
 from .serializer import WatchlistSerializer
-from .serializer import WatchlistStocksSerializer
+# from .serializer import WatchlistStocksSerializer
 
 #Stock Data ViewSet
 class StockViewSet(viewsets.ModelViewSet):
   permission_classes = [
     permissions.AllowAny,
+  
   ]
-  
-  def get_query(self):
-    return self.request.user.user_stock.all()
-  
-  
   serializer_class = StockSerializer
+  
+  def get_queryset(self):
+      user = self.request.user
+      return Stock.objects.filter(user=user)
+  
+  def retrieve(self, request, *args, **kwargs):
+    id = kwargs["pk"]
+    watchlistStocks = Stock.objects.filter(watchlist=id)
+    serializer = StockSerializer(watchlistStocks, many=True)
+    return Response(serializer.data)
+  
   Response(serializer_class.data)
   
 class WatchlistViewSet(viewsets.ModelViewSet):
@@ -45,20 +53,31 @@ class WatchlistViewSet(viewsets.ModelViewSet):
     watchlist.delete()
     return Response({"message": "Watchlist deleted"})
   
-  def update(self, request, *args, **kwargs):
-    watchlist = Watchlist.objects.get()
+  def put(self, request, *args, **kwargs):
+    id = request.query_params["id"]
+    watchlist = Watchlist.objects.get(id=id)
     data = request.data
     watchlist.name = data["name"]
-    watchlist.user = data["user"]
     watchlist.save()
     serializer = WatchlistSerializer(watchlist)
     return Response(serializer.data)
   
-class WatchlistStocksViewSet(viewsets.ModelViewSet):
+# class WatchlistStocksViewSet(viewsets.ModelViewSet):
   
-  permission_classes = [
-    permissions.AllowAny,
-  ]
-  queryset= Stock.objects.all()
-  serializer_class = WatchlistStocksSerializer
-  Response(serializer_class.data)
+#   permission_classes = [
+#     permissions.AllowAny,
+  
+#   ]
+#   serializer_class = WatchlistStocksSerializer
+  
+#   def get_queryset(self):
+#       user = self.request.user
+#       serializer = WatchlistStocks.objects.filter(user=user)
+#       return Response(serializer.data)
+  
+#   def retrieve(self, request, *args, **kwargs):
+#     id = kwargs["pk"]
+#     watchlistStocks = WatchlistStocks.objects.filter(watchlist_id=id)
+#     serializer = WatchlistStocksSerializer(watchlistStocks)
+#     return Response(serializer.data)
+  

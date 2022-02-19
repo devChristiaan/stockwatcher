@@ -9,6 +9,9 @@ class Watchlist (models.Model):
   
 class WatchlistStocks(models.Model):
   ticker = models.CharField(max_length=5, null=False, blank=False)
-  watchlist_id = models.IntegerField(null=False, blank=False)
+  
+  watchlist_id = models.ForeignKey(Watchlist, on_delete=models.CASCADE, blank=True)
+  
   id = models.IntegerField(primary_key=True, null=False, blank=False)
+  
   user = models.CharField(max_length=25, null=False, blank=False)
