@@ -13,17 +13,13 @@ const WatchlistStocks = ({ ...props }) => {
   );
   const dispatch = useDispatch();
 
-  console.log(selectedWatchlist);
-
   useEffect(() => {
-    if (watchlists && selectedWatchlist) {
-      dispatch(
-        allActions.watchlistStocks.getWatchlistStocks(selectedWatchlist.id)
-      );
-    }
+    dispatch(
+      allActions.watchlistStocks.getWatchlistStocks(selectedWatchlist.id)
+    );
   }, [selectedWatchlist, watchlists]);
 
-  return <WatchlistStockDisplay />;
+  return <WatchlistStockDisplay watchlistStocks={watchlistStocks} />;
 };
 
 export default WatchlistStocks;
