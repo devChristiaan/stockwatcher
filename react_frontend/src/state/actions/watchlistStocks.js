@@ -3,12 +3,12 @@ import axiosInstance from "../../utils/axiosInstance";
 const urlAPI = process.env.REACT_APP_API_URL;
 
 // Get Watchlits
-const getWatchlistStocks = (authTokens) => (dispatch) => {
+const getWatchlistStocks = (watchlist) => (dispatch) => {
   axiosInstance
-    .get(`${urlAPI}watchlist/`)
+    .get(`${urlAPI}stock/?id=${watchlist}`)
     .then((res) => {
       dispatch({
-        type: "GET_WATCHLISTS",
+        type: "GET_WATCHLIST_STOCKS",
         payload: res.data,
       });
     })
