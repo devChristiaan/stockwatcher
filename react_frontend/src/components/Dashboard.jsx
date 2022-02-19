@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import { useSelector, useDispatch } from "react-redux";
 import allActions from "../state/actions/index";
 import Watchlist from "./Watchlist";
+import WatchlistStocks from "./WatchlistStocks";
 import Stock from "./stock";
 
 const Dashboard = ({ ...props }) => {
@@ -41,6 +42,8 @@ const Dashboard = ({ ...props }) => {
         >
           <List>
             <Watchlist />
+            <Divider />
+            <WatchlistStocks />
             <Divider />
           </List>
         </Drawer>

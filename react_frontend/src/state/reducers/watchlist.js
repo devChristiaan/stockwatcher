@@ -1,5 +1,6 @@
 const initialState = {
   watchlists: [],
+  selectedWatchlist: [],
 };
 
 export function watchlistReducer(state = initialState, action) {
@@ -27,6 +28,11 @@ export function watchlistReducer(state = initialState, action) {
         watchlists: state.watchlists
           .filter((watchlist) => watchlist.id !== action.payload.id)
           .concat(action.payload),
+      };
+    case "SELECTED_WATCHLIST":
+      return {
+        ...state,
+        selectedWatchlist: action.payload,
       };
     default:
       return state;

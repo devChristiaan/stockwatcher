@@ -40,6 +40,13 @@ const Watchlist = () => {
     setNewWatchlist("");
   };
 
+  useEffect(() => {
+    setSelectedWatchlist(
+      watchlists.find((watchlist) => watchlist.name === selectedWatchlist)
+    );
+    return () => {};
+  }, [selectedWatchlist, watchlists]);
+
   return (
     <>
       <Box
@@ -52,7 +59,6 @@ const Watchlist = () => {
         <Typography>Watchlists</Typography>
         <WatchlistControls
           user={user}
-          watchlists={watchlists}
           selectedWatchlist={selectedWatchlist}
           clearInput={clearInput}
           editMode={actionWatchlist}

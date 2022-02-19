@@ -3,7 +3,7 @@ import axiosInstance from "../../utils/axiosInstance";
 const urlAPI = process.env.REACT_APP_API_URL;
 
 // Get Watchlits
-const getWatchlists = (authTokens) => (dispatch) => {
+const getWatchlists = () => (dispatch) => {
   axiosInstance
     .get(`${urlAPI}watchlist/`)
     .then((res) => {
@@ -58,7 +58,6 @@ const editWatchlist = (id, user, newWatchlistName) => (dispatch) => {
       name: newWatchlistName,
     })
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: "EDIT_WATCHLIST",
         payload: res.data,
@@ -67,6 +66,14 @@ const editWatchlist = (id, user, newWatchlistName) => (dispatch) => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+// Edit Watchlit
+const selectedWatchlist = (watchlist) => (dispatch) => {
+  dispatch({
+    type: "SELECTED_WATCHLIST",
+    payload: watchlist,
+  });
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export

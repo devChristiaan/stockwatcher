@@ -22,7 +22,7 @@ const WatchlistDisplay = ({ ...props }) => {
             fontSize: "1rem",
             textAlign: "center",
           }}
-          value={selectedWatchlist}
+          value={selectedWatchlist.name}
           onChange={(e) => handleChange(e)}
         >
           {watchlists ? (
