@@ -6,12 +6,35 @@ import DoneIcon from "@mui/icons-material/Done";
 import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
+import { useSelector, useDispatch } from "react-redux";
+import allActions from "../state/actions";
 
 const WatchlistStocksControls = ({ ...props }) => {
   const [addStock, setAddStock] = useState(false);
   const [newTicker, setNewTicker] = useState("");
 
-  const handleChange = (e) => {};
+  const dispatch = useDispatch();
+
+  const selectedWatchlist = useSelector(
+    (state) => state.watchlistReducer.selectedWatchlist?.id
+  );
+  const user = useSelector((state) => state.userReducer.user.user);
+
+  const handleChange = (e) => {
+    setNewTicker(e.target.value.toUpperCase());
+  };
+
+  const addNewTicker = () => {
+    dispatch(
+      allActions.watchlistStocks.addWatchlistStocks(
+        selectedWatchlist,
+        newTicker,
+        user
+      )
+    );
+    setNewTicker("");
+    setAddStock(false);
+  };
 
   const handleAddChange = () => {
     setAddStock(true);
@@ -40,6 +63,7 @@ const WatchlistStocksControls = ({ ...props }) => {
         >
           <DoneIcon
             sx={{ color: "grey", marginRight: "12px", marginTop: "5px" }}
+            onClick={addNewTicker}
           />
           <FormControl>
             <TextField

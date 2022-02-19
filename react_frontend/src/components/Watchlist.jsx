@@ -32,14 +32,6 @@ const Watchlist = () => {
     }
   }, [watchlists]);
 
-  const handleChange = (event) => {
-    setSelectedWatchlist(event.target.value);
-  };
-
-  const clearInput = () => {
-    setNewWatchlist("");
-  };
-
   useEffect(() => {
     dispatch(
       allActions.watchlistActions.selectedWatchlist(
@@ -47,6 +39,14 @@ const Watchlist = () => {
       )
     );
   }, [selectedWatchlist]);
+
+  const handleChange = (event) => {
+    setSelectedWatchlist(event.target.value);
+  };
+
+  const clearInput = () => {
+    setNewWatchlist("");
+  };
 
   return (
     <>

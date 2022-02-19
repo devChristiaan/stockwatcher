@@ -18,11 +18,14 @@ const getWatchlistStocks = (watchlist) => (dispatch) => {
     });
 };
 // Add Watchlit Stocks
-const addWatchlistStocks = (watchlistID) => (dispatch) => {
+const addWatchlistStocks = (watchlistID, newTicker, user) => (dispatch) => {
   axiosInstance
-    .post(`${urlAPI}watchliststocks/${watchlistID}`, {})
+    .post(`${urlAPI}watchliststocks/`, {
+      ticker: newTicker,
+      watchlist: watchlistID,
+      user: user,
+    })
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: "ADD_WATCHLIST_STOCKS",
         payload: res.data,

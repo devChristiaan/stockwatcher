@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import allActions from "../state/actions";
 
 const WatchlistStocks = ({ ...props }) => {
-  const watchlists = useSelector((state) => state.watchlistReducer.watchlists);
   const selectedWatchlist = useSelector(
     (state) => state.watchlistReducer.selectedWatchlist
   );

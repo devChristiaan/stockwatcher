@@ -13,6 +13,7 @@ const WatchlistStockDisplay = ({ ...props }) => {
         padding: ".5rem",
         display: "flex",
         justifyContent: "space-around",
+        flexDirection: "column",
       }}
     >
       {watchlistStocks.length > 0 ? (
