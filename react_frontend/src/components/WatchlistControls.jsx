@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -14,14 +14,14 @@ const WatchlistControls = ({ ...props }) => {
     editMode,
     setEdit,
     clearInput,
-    newWatchlist,
     watchlists,
     selectedWatchlist,
     newWatchlistName,
+    setNewWatchlistName,
     user,
   } = props;
 
-  const [rename, setRename] = useState(false);
+  const rename = useRef();
   const [editWatchlist, setEditWatchlist] = useState({});
   const dispatch = useDispatch();
 
@@ -34,14 +34,17 @@ const WatchlistControls = ({ ...props }) => {
   const clear = () => {
     clearInput();
     setEdit(false);
+    rename.current = "false";
   };
 
   const add = () => {
     setEdit(true);
+    rename.current = "false";
   };
 
   const edit = () => {
-    setRename(true);
+    setNewWatchlistName(selectedWatchlist);
+    rename.current = "true";
     setEdit(true);
   };
 
@@ -51,9 +54,13 @@ const WatchlistControls = ({ ...props }) => {
   };
 
   const done = () => {
-    if (!rename) {
-      dispatch(allActions.watchlistActions.addWatchlist(user, newWatchlist));
+    if (rename.current === "false") {
+      dispatch(
+        allActions.watchlistActions.addWatchlist(user, newWatchlistName)
+      );
       setEdit(false);
+      rename.current = "false";
+      clearInput();
     } else {
       dispatch(
         allActions.watchlistActions.editWatchlist(
@@ -62,28 +69,36 @@ const WatchlistControls = ({ ...props }) => {
           newWatchlistName
         )
       );
-      setRename(false);
+      rename.current = "false";
       setEdit(false);
+      clearInput();
     }
   };
   return (
     <Box>
       {editMode ? (
         <>
-          <DoneIcon onClick={done} /> <ClearIcon onClick={clear} />
+          <DoneIcon
+            sx={{
+              fontSize: "1.3rem",
+              marginRight: "10px",
+            }}
+            onClick={done}
+          />{" "}
+          <ClearIcon onClick={clear} />
         </>
       ) : (
         <>
           <AddIcon
             sx={{
-              marginRight: "5px",
+              marginRight: "10px",
             }}
             onClick={add}
           />
           <EditIcon
             sx={{
               fontSize: "1.3rem",
-              marginRight: "5px",
+              marginRight: "10px",
             }}
             onClick={edit}
           />

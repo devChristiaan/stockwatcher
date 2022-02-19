@@ -21,13 +21,12 @@ export function watchlistReducer(state = initialState, action) {
           (watchlist) => watchlist.id !== action.payload
         ),
       };
-    case "EDIT_WATCHLISTS":
+    case "EDIT_WATCHLIST":
       return {
         ...state,
-        watchlists: state.fliter((watchlist) => {
-          if (watchlist.id === action.payload.id)
-            return (watchlist.name = action.payload.name);
-        }),
+        watchlists: state.watchlists
+          .filter((watchlist) => watchlist.id !== action.payload.id)
+          .concat(action.payload),
       };
     default:
       return state;

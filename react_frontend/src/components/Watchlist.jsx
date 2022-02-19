@@ -57,7 +57,7 @@ const Watchlist = () => {
           clearInput={clearInput}
           editMode={actionWatchlist}
           setEdit={setActionWatchlist}
-          newWatchlist={newWatchlist}
+          setNewWatchlistName={setNewWatchlist}
           newWatchlistName={newWatchlist}
         />
       </Box>
