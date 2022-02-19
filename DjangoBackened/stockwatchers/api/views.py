@@ -16,9 +16,9 @@ from .serializer import WatchlistSerializer
 #Stock Data ViewSet
 class StockViewSet(viewsets.ModelViewSet):
   permission_classes = [
-    permissions.AllowAny,
-  
+    permissions.IsAuthenticated,
   ]
+  
   serializer_class = StockSerializer
   
   def get_queryset(self):
@@ -31,7 +31,13 @@ class StockViewSet(viewsets.ModelViewSet):
     serializer = StockSerializer(watchlistStocks, many=True)
     return Response(serializer.data)
   
-  Response(serializer_class.data)
+  def create(self, request, *args, **kwargs):
+    data = request.data
+    watchlist_obj = Watchlist.objects.get(id=data["watchlist"])
+    newWatchlistStock = Stock.objects.create(ticker=data["ticker"], user=data["user"], watchlist=watchlist_obj)
+    newWatchlistStock.save()
+    serializer = StockSerializer(newWatchlistStock)
+    return Response(serializer.data)
   
 class WatchlistViewSet(viewsets.ModelViewSet):
   permission_classes = [
@@ -41,8 +47,8 @@ class WatchlistViewSet(viewsets.ModelViewSet):
   serializer_class = WatchlistSerializer
   
   def get_queryset(self):
-      user = self.request.user
-      return Watchlist.objects.filter(user=user)
+    user = self.request.user
+    return Watchlist.objects.filter(user=user)
         
   def perform_create(self, serializer):
     watchlist = serializer.save(user=self.request.user)

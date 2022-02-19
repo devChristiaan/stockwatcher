@@ -7,7 +7,7 @@ router = routers.DefaultRouter()
 
 #GET METHOD
 #<siteUrl/<apiVersion>/stock
-router.register('watchliststocks/', StockViewSet, basename="Stock")
+router.register('watchliststocks', StockViewSet, basename="Stock")
 
 #GET METHOD
 #<siteUrl/<apiVersion>/watchlist
