@@ -44,8 +44,8 @@ const Dashboard = ({ ...props }) => {
             <Watchlist />
             <Divider />
             <WatchlistStocks />
-            <Divider />
             <WatchlistStocksControls />
+            <Divider sx={{ marginTop: "15px" }} />
           </List>
         </Drawer>
       </Box>
