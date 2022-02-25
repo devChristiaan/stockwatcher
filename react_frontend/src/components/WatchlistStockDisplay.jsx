@@ -91,7 +91,14 @@ const WatchlistStockDisplay = ({ ...props }) => {
                 onClick={() => toggleSettings(stock.id)}
               />
               {shownSetings[stock.id] ? (
-                <Box sx={{ width: "55px" }}>
+                <Box
+                  sx={{
+                    width: "55px",
+                    display: "flex",
+                    justifyContent: "space-around",
+                    flexDirection: "row",
+                  }}
+                >
                   {!shownEdit[stock.id] ? (
                     <>
                       <EditIcon
