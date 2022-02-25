@@ -44,6 +44,15 @@ class StockViewSet(viewsets.ModelViewSet):
     watchlistStock.delete()
     return Response({"message": "Stock deleted Successfully"})
   
+  def put(self, request, *args, **kwargs):
+    id = request.query_params["id"]
+    data = request.data
+    stock = Stock.objects.get(id=id)
+    stock.ticker = data["ticker"]
+    stock.save()
+    serializer = StockSerializer(stock)
+    return Response(serializer.data)
+  
 class WatchlistViewSet(viewsets.ModelViewSet):
   permission_classes = [
     permissions.IsAuthenticated,
