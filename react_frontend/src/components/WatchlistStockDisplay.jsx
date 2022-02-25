@@ -1,14 +1,30 @@
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import SettingsIcon from "@mui/icons-material/Settings";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
 const WatchlistStockDisplay = ({ ...props }) => {
   const { watchlistStocks } = props;
+  const [settings, setSettings] = useState(true);
 
-  const changeToSettings = () => {};
+  // const changeToSettings = () => {
+  //   setSettings(!settings);
+  // };
+
+  const [shownSetings, setShownSetings] = useState({});
+
+  const toggleSettings = (id) => {
+    setSettings(!settings);
+    setShownSetings((prevSettingsShown) => ({
+      ...prevSettingsShown,
+      [id]: !prevSettingsShown[id],
+    }));
+  };
 
   return (
     <Box
@@ -20,7 +36,7 @@ const WatchlistStockDisplay = ({ ...props }) => {
         flexDirection: "column",
       }}
     >
-      {watchlistStocks.length > 0 ? (
+      {watchlistStocks ? (
         watchlistStocks.map((stock) => (
           <>
             <ListItemButton key={stock.id}>
@@ -30,7 +46,17 @@ const WatchlistStockDisplay = ({ ...props }) => {
                 flexItem
                 sx={{ marginRight: "10px" }}
               />
-              <SettingsIcon fontSize="small" onMouseOver={changeToSettings} />
+              <MoreVertIcon
+                sx={{ width: "35px", marginRight: "5px" }}
+                fontSize="small"
+                onClick={() => toggleSettings(stock.id)}
+              />
+              {shownSetings[stock.id] ? (
+                <Box sx={{ width: "55px" }}>
+                  <EditIcon fontSize="small" sx={{ marginRight: "15px" }} />
+                  <DeleteIcon fontSize="small" />
+                </Box>
+              ) : null}
             </ListItemButton>
             <Divider
               variant="middle"

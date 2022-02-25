@@ -7,7 +7,6 @@ const getWatchlistStocks = (watchlist) => (dispatch) => {
   axiosInstance
     .get(`${urlAPI}watchliststocks/${watchlist}`)
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: "GET_WATCHLIST_STOCKS",
         payload: res.data,
