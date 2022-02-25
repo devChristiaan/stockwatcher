@@ -10,7 +10,12 @@ const WatchlistStockTickerInput = ({ ...props }) => {
   };
   return (
     <Box
-      sx={{ width: "100px", display: "flex", justifyContent: "space-around" }}
+      sx={{
+        width: "100px",
+        marginRight: "15px",
+        display: "flex",
+        justifyContent: "space-around",
+      }}
     >
       <FormControl>
         <TextField
