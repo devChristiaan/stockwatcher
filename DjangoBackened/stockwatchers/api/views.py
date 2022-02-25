@@ -39,6 +39,11 @@ class StockViewSet(viewsets.ModelViewSet):
     serializer = StockSerializer(newWatchlistStock)
     return Response(serializer.data)
   
+  def destroy(self, request, *args, **kwargs):
+    watchlistStock = self.get_object()
+    watchlistStock.delete()
+    return Response({"message": "Stock deleted Successfully"})
+  
 class WatchlistViewSet(viewsets.ModelViewSet):
   permission_classes = [
     permissions.IsAuthenticated,
@@ -57,7 +62,7 @@ class WatchlistViewSet(viewsets.ModelViewSet):
   def destroy(self, request, *args, **kwargs):
     watchlist = self.get_object()
     watchlist.delete()
-    return Response({"message": "Watchlist deleted"})
+    return Response({"message": "Watchlist deleted Successfully"})
   
   def put(self, request, *args, **kwargs):
     id = request.query_params["id"]
