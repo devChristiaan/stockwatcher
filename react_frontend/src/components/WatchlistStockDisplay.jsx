@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import allActions from "../state/actions";
 import Box from "@mui/material/Box";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
@@ -10,16 +12,14 @@ import EditIcon from "@mui/icons-material/Edit";
 
 const WatchlistStockDisplay = ({ ...props }) => {
   const { watchlistStocks } = props;
-  const [settings, setSettings] = useState(true);
-
-  // const changeToSettings = () => {
-  //   setSettings(!settings);
-  // };
-
+  const dispatch = useDispatch();
   const [shownSetings, setShownSetings] = useState({});
 
+  const deleteStock = (id) => {
+    dispatch(allActions.watchlistStocks.deleteWatchlistStock(id));
+  };
+
   const toggleSettings = (id) => {
-    setSettings(!settings);
     setShownSetings((prevSettingsShown) => ({
       ...prevSettingsShown,
       [id]: !prevSettingsShown[id],
@@ -54,7 +54,10 @@ const WatchlistStockDisplay = ({ ...props }) => {
               {shownSetings[stock.id] ? (
                 <Box sx={{ width: "55px" }}>
                   <EditIcon fontSize="small" sx={{ marginRight: "15px" }} />
-                  <DeleteIcon fontSize="small" />
+                  <DeleteIcon
+                    fontSize="small"
+                    onClick={(e) => deleteStock(stock.id)}
+                  />
                 </Box>
               ) : null}
             </ListItemButton>

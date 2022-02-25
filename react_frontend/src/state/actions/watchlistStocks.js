@@ -37,7 +37,7 @@ const addWatchlistStocks = (watchlistID, newTicker, user) => (dispatch) => {
 
 const deleteWatchlistStock = (id) => (dispatch) => {
   axiosInstance
-    .delete(`${urlAPI}watchlist/${id}/`)
+    .delete(`${urlAPI}watchliststocks/${id}/`)
     .then((res) => {
       dispatch({
         type: "DELETE_WATCHLIST_STOCK",
