@@ -2,7 +2,7 @@ import axiosInstance from "../../utils/axiosInstance";
 
 const urlAPI = process.env.REACT_APP_API_URL;
 
-// Get Watchlit Stocks
+// Get Watchlist Stocks
 const getWatchlistStocks = (watchlist) => (dispatch) => {
   axiosInstance
     .get(`${urlAPI}watchliststocks/${watchlist}`)
@@ -16,7 +16,7 @@ const getWatchlistStocks = (watchlist) => (dispatch) => {
       console.log(err);
     });
 };
-// Add Watchlit Stocks
+// Add Watchlist Stock
 const addWatchlistStocks = (watchlistID, newTicker, user) => (dispatch) => {
   axiosInstance
     .post(`${urlAPI}watchliststocks/`, {
@@ -34,7 +34,7 @@ const addWatchlistStocks = (watchlistID, newTicker, user) => (dispatch) => {
       console.log(err);
     });
 };
-
+// Delete Watchlist Stock
 const deleteWatchlistStock = (id) => (dispatch) => {
   axiosInstance
     .delete(`${urlAPI}watchliststocks/${id}/`)
