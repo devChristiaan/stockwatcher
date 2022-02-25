@@ -21,6 +21,13 @@ export function watchlistStocksReducer(state = initialState, action) {
           (stock) => stock.id !== action.payload
         ),
       };
+    case "EDIT_WATCHLIST_STOCK":
+      return {
+        ...state,
+        watchlistStocks: state.watchlistStocks
+          .filter((stock) => stock.id !== action.payload.id)
+          .concat(action.payload),
+      };
     default:
       return state;
   }

@@ -49,9 +49,27 @@ const deleteWatchlistStock = (id) => (dispatch) => {
     });
 };
 
+const editWatchlistStock = (id, user, newWatchlistName) => (dispatch) => {
+  axiosInstance
+    .put(`${urlAPI}watchliststocks/?id=${id}`, {
+      user: user,
+      name: newWatchlistName,
+    })
+    .then((res) => {
+      dispatch({
+        type: "EDIT_WATCHLIST_STOCK",
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getWatchlistStocks,
   addWatchlistStocks,
   deleteWatchlistStock,
+  editWatchlistStock,
 };
