@@ -35,8 +35,23 @@ const addWatchlistStocks = (watchlistID, newTicker, user) => (dispatch) => {
     });
 };
 
+const deleteWatchlistStock = (id) => (dispatch) => {
+  axiosInstance
+    .delete(`${urlAPI}watchlist/${id}/`)
+    .then((res) => {
+      dispatch({
+        type: "DELETE_WATCHLIST_STOCK",
+        payload: id,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getWatchlistStocks,
   addWatchlistStocks,
+  deleteWatchlistStock,
 };

@@ -14,6 +14,13 @@ export function watchlistStocksReducer(state = initialState, action) {
         ...state,
         watchlistStocks: [...state.watchlistStocks, action.payload],
       };
+    case "DELETE_WATCHLIST_STOCK":
+      return {
+        ...state,
+        watchlistStocks: state.watchlistStocks.filter(
+          (stock) => stock.id !== action.payload
+        ),
+      };
     default:
       return state;
   }
