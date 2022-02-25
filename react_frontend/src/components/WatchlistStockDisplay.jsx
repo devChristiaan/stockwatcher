@@ -9,14 +9,22 @@ import Divider from "@mui/material/Divider";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import WatchlistStockTickerInput from "./WatchlistStockTickerInput";
 
 const WatchlistStockDisplay = ({ ...props }) => {
   const { watchlistStocks } = props;
   const dispatch = useDispatch();
+  const [ticker, setTicker] = useState({});
   const [shownSetings, setShownSetings] = useState({});
+  const [shownEdit, setShownEdit] = useState({});
 
   const deleteStock = (id) => {
     dispatch(allActions.watchlistStocks.deleteWatchlistStock(id));
+  };
+
+  const updateStock = (id) => {
+    dispatch(allActions.watchlistStocks.editWatchlistStock(id));
+    toggleEdit(id);
   };
 
   const toggleSettings = (id) => {
@@ -25,6 +33,16 @@ const WatchlistStockDisplay = ({ ...props }) => {
       [id]: !prevSettingsShown[id],
     }));
   };
+
+  const toggleEdit = (id, ticker) => {
+    setTicker({ id, ticker });
+    setShownEdit((prevEditShown) => ({
+      ...prevEditShown,
+      [id]: !prevEditShown[id],
+    }));
+  };
+
+  console.log(ticker);
 
   return (
     <Box
@@ -40,7 +58,14 @@ const WatchlistStockDisplay = ({ ...props }) => {
         watchlistStocks.map((stock) => (
           <>
             <ListItemButton key={stock.id}>
-              <ListItemText primary={stock.ticker} />
+              {!shownEdit[stock.id] ? (
+                <ListItemText primary={stock.ticker} />
+              ) : (
+                <WatchlistStockTickerInput
+                  ticker={ticker}
+                  updateTicker={setTicker}
+                />
+              )}
               <Divider
                 orientation="vertical"
                 flexItem
@@ -53,7 +78,11 @@ const WatchlistStockDisplay = ({ ...props }) => {
               />
               {shownSetings[stock.id] ? (
                 <Box sx={{ width: "55px" }}>
-                  <EditIcon fontSize="small" sx={{ marginRight: "15px" }} />
+                  <EditIcon
+                    fontSize="small"
+                    sx={{ marginRight: "15px" }}
+                    onClick={(e) => toggleEdit(stock.id, stock.ticker)}
+                  />
                   <DeleteIcon
                     fontSize="small"
                     onClick={(e) => deleteStock(stock.id)}
