@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import WatchlistStockDisplay from "./WatchlistStockDisplay";
 import { useDispatch, useSelector } from "react-redux";
+import WatchlistStockDisplay from "./WatchlistStockDisplay";
 import allActions from "../state/actions";
 
 const WatchlistStocks = ({ ...props }) => {
@@ -10,9 +10,6 @@ const WatchlistStocks = ({ ...props }) => {
   const watchlistStocks = useSelector(
     (state) => state.watchlistStocksReducer.watchlistStocks
   );
-  // const watchlist = useSelector(
-  //   (state) => state.watchlistReducer.selectedWatchlist
-  // );
   const dispatch = useDispatch();
 
   useEffect(() => {

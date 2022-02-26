@@ -6,7 +6,7 @@ const WatchlistStockTickerInput = ({ ...props }) => {
   const { ticker, updateTicker } = props;
 
   const handleChange = (e) => {
-    updateTicker({ ...ticker, ticker: e.target.value });
+    updateTicker({ ...ticker, ticker: e.target.value.toUpperCase() });
   };
   return (
     <Box

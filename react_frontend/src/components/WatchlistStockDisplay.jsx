@@ -37,7 +37,8 @@ const WatchlistStockDisplay = ({ ...props }) => {
         watchlist
       )
     );
-    toggleEdit(id);
+    toggleEdit(ticker.id);
+    setTicker({});
   };
 
   const clear = (id) => {

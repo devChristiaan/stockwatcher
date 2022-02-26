@@ -54,7 +54,7 @@ const editWatchlistStock = (id, user, newTicker, watchlistID) => (dispatch) => {
     .put(`${urlAPI}watchliststocks/?id=${id}`, {
       user: user,
       ticker: newTicker,
-      watchlist: watchlistID.id,
+      watchlistID: watchlistID.id,
     })
     .then((res) => {
       dispatch({
