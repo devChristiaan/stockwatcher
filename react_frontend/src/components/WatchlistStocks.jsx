@@ -10,12 +10,15 @@ const WatchlistStocks = ({ ...props }) => {
   const watchlistStocks = useSelector(
     (state) => state.watchlistStocksReducer.watchlistStocks
   );
+  // const watchlist = useSelector(
+  //   (state) => state.watchlistReducer.selectedWatchlist
+  // );
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (selectedWatchlist) {
       dispatch(
-        allActions.watchlistStocks.getWatchlistStocks(selectedWatchlist.id)
+        allActions.watchlistStocks.getWatchlistStocks(selectedWatchlist?.id)
       );
     }
   }, [selectedWatchlist]);

@@ -18,27 +18,26 @@ const Watchlist = () => {
   const [actionWatchlist, setActionWatchlist] = useState(false);
   const [newWatchlist, setNewWatchlist] = useState("");
 
+  //Check if user is logged in. Fetch user watchlits and
   useEffect(() => {
     if (!authTokens) {
       dispatch(allActions.userActions.logout(user));
     }
     dispatch(allActions.watchlistActions.getWatchlists(authTokens));
-    setSelectedWatchlist(watchlists[0]?.name);
-  }, [authTokens, user, dispatch]);
+    return () => {};
+  }, [authTokens, user]);
 
+  //Set first watchlist too selected watchlist and set selected watchlist to global state
   useEffect(() => {
     if (watchlists.length >= 1) {
       setSelectedWatchlist(watchlists[0]?.name);
     }
-  }, [watchlists]);
-
-  useEffect(() => {
     dispatch(
       allActions.watchlistActions.selectedWatchlist(
         watchlists.find((watchlist) => watchlist.name === selectedWatchlist)
       )
     );
-  }, [selectedWatchlist]);
+  }, [watchlists]);
 
   const handleChange = (event) => {
     setSelectedWatchlist(event.target.value);

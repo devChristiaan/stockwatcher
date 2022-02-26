@@ -49,11 +49,12 @@ const deleteWatchlistStock = (id) => (dispatch) => {
     });
 };
 
-const editWatchlistStock = (id, user, newWatchlistName) => (dispatch) => {
+const editWatchlistStock = (id, user, newTicker, watchlistID) => (dispatch) => {
   axiosInstance
     .put(`${urlAPI}watchliststocks/?id=${id}`, {
       user: user,
-      name: newWatchlistName,
+      ticker: newTicker,
+      watchlist: watchlistID.id,
     })
     .then((res) => {
       dispatch({

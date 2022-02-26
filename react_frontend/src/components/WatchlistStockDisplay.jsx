@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import allActions from "../state/actions";
 import Box from "@mui/material/Box";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -19,13 +19,24 @@ const WatchlistStockDisplay = ({ ...props }) => {
   const [ticker, setTicker] = useState({});
   const [shownSetings, setShownSetings] = useState({});
   const [shownEdit, setShownEdit] = useState({});
+  const user = useSelector((state) => state.userReducer.user.user);
+  const watchlist = useSelector(
+    (state) => state.watchlistReducer.selectedWatchlist
+  );
 
   const deleteStock = (id) => {
     dispatch(allActions.watchlistStocks.deleteWatchlistStock(id));
   };
 
   const updateStock = (id) => {
-    dispatch(allActions.watchlistStocks.editWatchlistStock(ticker));
+    dispatch(
+      allActions.watchlistStocks.editWatchlistStock(
+        ticker.id,
+        user,
+        ticker.ticker,
+        watchlist
+      )
+    );
     toggleEdit(id);
   };
 
@@ -55,8 +66,6 @@ const WatchlistStockDisplay = ({ ...props }) => {
       [id]: !prevEditShown[id],
     }));
   };
-
-  console.log(ticker);
 
   return (
     <Box
