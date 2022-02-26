@@ -64,6 +64,16 @@ export const theme = createTheme({
             fontSize: "1rem",
           },
         },
+        {
+          props: {
+            variant: "navMenuItemUser",
+          },
+          style: {
+            fontSize: "1.2rem",
+            padding: ".8rem",
+            marginRight: "1.5rem",
+          },
+        },
       ],
     },
     MuiMenuItem: {
