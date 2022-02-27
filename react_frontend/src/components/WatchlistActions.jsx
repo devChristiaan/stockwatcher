@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
-import Typography from "@mui/material/Typography";
 
 const WatchlistActions = ({ ...props }) => {
   const { value, setValue } = props;

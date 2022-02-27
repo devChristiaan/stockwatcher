@@ -27,17 +27,21 @@ const Watchlist = () => {
     return () => {};
   }, [authTokens, user]);
 
-  //Set first watchlist too selected watchlist and set selected watchlist to global state
+  //Set first watchlist too selected watchlist in comp state
   useEffect(() => {
     if (watchlists.length >= 1) {
       setSelectedWatchlist(watchlists[0]?.name);
     }
+  }, [watchlists]);
+
+  //Set selected watchlist to global state
+  useEffect(() => {
     dispatch(
       allActions.watchlistActions.selectedWatchlist(
         watchlists.find((watchlist) => watchlist.name === selectedWatchlist)
       )
     );
-  }, [watchlists]);
+  }, [selectedWatchlist]);
 
   const handleChange = (event) => {
     setSelectedWatchlist(event.target.value);
