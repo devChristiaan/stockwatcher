@@ -32,7 +32,7 @@ const Dashboard = ({ ...props }) => {
             width: 240,
             flexShrink: 0,
             "& .MuiDrawer-paper": {
-              marginTop: 8.3,
+              marginTop: 8.2,
               width: 240,
               boxSizing: "border-box",
             },
