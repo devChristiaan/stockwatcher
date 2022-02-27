@@ -53,7 +53,7 @@ const Chart = ({ ...props }) => {
       setLoading(false);
     };
     getStockData();
-  }, [ticker]);
+  }, [ticker, apiKey]);
 
   useEffect(() => {
     if (!loading) {

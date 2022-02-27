@@ -24,7 +24,7 @@ const Dashboard = ({ ...props }) => {
   }, [authTokens, user, dispatch]);
 
   return (
-    <Container>
+    <Container maxWidth="xl">
       <Stock />
       <Box sx={{ overflow: "auto" }}>
         <Drawer

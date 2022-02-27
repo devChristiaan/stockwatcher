@@ -2,8 +2,7 @@ import { useSelector } from "react-redux";
 import Chart from "./Chart";
 import CompanyOverview from "./CompanyOverview";
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
 
 const Stock = () => {
   const ticker = useSelector((state) => state.stockReducer.ticker);
@@ -14,17 +13,17 @@ const Stock = () => {
       sx={{
         display: "flex",
         direction: "row",
-        justifyContent: "space-between",
+        justifyContent: "center",
+        marginTop: "7rem",
       }}
       container
-      paddingY={3}
     >
-      <Box sx={{ width: "100%", marginBottom: "1rem" }}>
-        <Typography component="h1" variant="primary">
-          {ticker}
-        </Typography>
-      </Box>
       <CompanyOverview item ticker={ticker} apiKey={apiKey} />
+      <Divider
+        orientation="vertical"
+        flexItem
+        sx={{ marginLeft: 4, marginRight: 4 }}
+      />
       <Chart item ticker={ticker} apiKey={apiKey} />
     </Grid>
   );
