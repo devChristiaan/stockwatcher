@@ -21,6 +21,9 @@ export const theme = createTheme({
     success: {
       main: "#20bf6b",
     },
+    background: {
+      default: "#F5F6F9",
+    },
   },
   spacing: 8,
   components: {

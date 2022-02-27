@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
+import Paper from "@mui/material/Paper";
 
 const CompanyOverview = ({ ...props }) => {
   const { ticker, apiKey } = props;
@@ -20,7 +21,10 @@ const CompanyOverview = ({ ...props }) => {
   }, [ticker, apiKey]);
 
   return (
-    <Box sx={{ width: "30rem", marginRight: "1rem" }}>
+    <Box
+      sx={{ width: "35rem", marginRight: "1rem", padding: 3 }}
+      component={Paper}
+    >
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <Typography component="h1" variant="primary">
           {companyData.Name}
@@ -54,7 +58,6 @@ const CompanyOverview = ({ ...props }) => {
           Industry: {companyData.Industry}
         </Typography>
       </Box>
-      <Divider sx={{ paddingTop: 2, marginBottom: 1 }} />
     </Box>
   );
 };

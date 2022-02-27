@@ -15,6 +15,7 @@ const Stock = () => {
         direction: "row",
         justifyContent: "center",
         marginTop: "7rem",
+        marginLeft: "-4rem",
       }}
       container
     >
