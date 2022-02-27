@@ -66,6 +66,14 @@ export const theme = createTheme({
         },
         {
           props: {
+            variant: "watchlistTitle",
+          },
+          style: {
+            fontSize: "1.15rem",
+          },
+        },
+        {
+          props: {
             variant: "navMenuItemUser",
           },
           style: {
