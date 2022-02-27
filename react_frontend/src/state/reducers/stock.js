@@ -4,10 +4,10 @@ const initialState = {
 
 export function stockReducer(state = initialState, action) {
   switch (action.type) {
-    case "SETTICKER":
+    case "SET_TICKER":
       return {
         ...state,
-        ticker: action.payload.toUpperCase(),
+        ticker: action.payload,
       };
     default:
       return state;

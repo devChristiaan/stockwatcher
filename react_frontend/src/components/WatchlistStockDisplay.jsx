@@ -24,6 +24,10 @@ const WatchlistStockDisplay = ({ ...props }) => {
     (state) => state.watchlistReducer.selectedWatchlist
   );
 
+  const navigateToTicker = (stock) => {
+    dispatch(allActions.stockActions.setTicker(stock));
+  };
+
   const deleteStock = (id) => {
     dispatch(allActions.watchlistStocks.deleteWatchlistStock(id));
   };
@@ -81,7 +85,10 @@ const WatchlistStockDisplay = ({ ...props }) => {
       {watchlistStocks ? (
         watchlistStocks.map((stock) => (
           <>
-            <ListItemButton key={stock.id}>
+            <ListItemButton
+              key={stock.id}
+              onClick={(e) => navigateToTicker(stock.ticker)}
+            >
               {!shownEdit[stock.id] ? (
                 <ListItemText primary={stock.ticker} />
               ) : (
