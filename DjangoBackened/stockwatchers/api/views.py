@@ -47,8 +47,11 @@ class StockViewSet(viewsets.ModelViewSet):
   def put(self, request, *args, **kwargs):
     id = request.query_params["id"]
     data = request.data
+    watchlist_obj = Watchlist.objects.get(id=data["watchlistID"])
     stock = Stock.objects.get(id=id)
     stock.ticker = data["ticker"]
+    stock.user = data["user"]
+    stock.watchlist = watchlist_obj
     stock.save()
     serializer = StockSerializer(stock)
     return Response(serializer.data)
