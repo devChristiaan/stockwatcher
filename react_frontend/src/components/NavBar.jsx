@@ -28,9 +28,18 @@ const NavBar = () => {
           justifyContent: "space-between",
         }}
       >
-        <Link to="/">
-          <Typography variant="h6">Stockwatchers</Typography>
-        </Link>
+        <Box sx={{ display: "flex" }}>
+          <Link to="/">
+            <Typography variant="h6">Stockwatchers</Typography>
+          </Link>
+          {user.user ? (
+            <Link to="/dashboard">
+              <Typography variant="navMenuItemUser" sx={{ marginLeft: "2rem" }}>
+                Dashboard
+              </Typography>
+            </Link>
+          ) : null}
+        </Box>
         {user.user ? (
           <>
             <Search />
@@ -44,7 +53,7 @@ const NavBar = () => {
         ) : (
           <Box>
             <Link to="/login">
-              <Button color="info">Login</Button>
+              <Button color="inherit">Login</Button>
             </Link>
           </Box>
         )}
