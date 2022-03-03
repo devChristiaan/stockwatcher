@@ -20,6 +20,7 @@ const login = (formData) => (dispatch) => {
         type: "LOGIN",
         payload: {
           user: jwt_decode(res.data.access).username,
+          userId: jwt_decode(res.data.access).user_id,
           tokens: res.data,
         },
       });
@@ -44,6 +45,7 @@ const refresh = (refreshToken, user) => (dispatch) => {
         type: "REFRESH",
         payload: {
           user: user,
+          userId: jwt_decode(res.data.access).user_id,
           tokens: res.data,
         },
       });
