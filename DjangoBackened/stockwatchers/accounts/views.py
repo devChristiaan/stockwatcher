@@ -5,6 +5,9 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.tokens import AccessToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 
+from django.contrib.auth.models import User
+from rest_framework import viewsets
+
 # Register API
 class RegistrationViewSet(generics.GenericAPIView):
   
@@ -38,3 +41,13 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
+    
+class UserProfileViewSet(viewsets.ModelViewSet):
+  permission_classes = [
+    permissions.IsAuthenticated,
+  ]
+  serializer_class = UserSerializer
+  
+  def get_queryset(self):
+    id = self.kwargs['pk']
+    return User.objects.filter(id=id)
