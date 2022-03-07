@@ -44,7 +44,9 @@ const NavBar = () => {
           <>
             <Search />
             <Box>
-              <Typography variant="navMenuItemUser">{user.user}</Typography>
+              <Link to="/profile">
+                <Typography variant="navMenuItemUser">{user.user}</Typography>
+              </Link>
               <Button color="inherit" onClick={logout}>
                 LogOut
               </Button>

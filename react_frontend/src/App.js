@@ -3,6 +3,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import LogIn from "./pages/Login";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import PrivateRoute from "./utils/PrivateRoute.jsx";
 import Dashboard from "./components/Dashboard";
@@ -47,6 +48,7 @@ function App() {
           <Route element={<LogIn />} path="/login" exact />
           <Route element={<PrivateRoute />}>
             <Route element={<Dashboard />} path="/dashboard" exact />
+            <Route element={<Profile />} path="/profile" exact />
           </Route>
         </Routes>
       </Router>
